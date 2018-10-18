@@ -1,0 +1,26 @@
+{
+	"name": "Vigil",
+	"servePort": 8000,
+	"partitions": {
+		"Client": {
+			"path": "Client",
+			"target": "StarterPlayer.StarterPlayerScripts"
+		},
+		"Loading": {
+			"path": "Loading",
+			"target": "ReplicatedFirst.Scripts"
+		},
+		"Server": {
+			"path": "Server",
+			"target": "ServerScriptService"
+		},
+		"Shared": {
+			"path": "Shared",
+			"target": "ReplicatedStorage.Scripts"
+		},
+		"UI": {
+			"path": "UI",
+			"target": "StarterGui.Scripts"
+		}
+	}
+}
