@@ -1,5 +1,5 @@
 {
-	"name": "Vigil",
+	"name": "Vigilant",
 	"servePort": 8000,
 	"partitions": {
 		"Client": {
@@ -17,10 +17,6 @@
 		"Shared": {
 			"path": "Shared",
 			"target": "ReplicatedStorage.Scripts"
-		},
-		"UI": {
-			"path": "UI",
-			"target": "StarterGui.Scripts"
 		}
 	}
 }
