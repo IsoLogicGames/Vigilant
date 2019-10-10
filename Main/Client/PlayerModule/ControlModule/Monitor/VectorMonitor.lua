@@ -2,67 +2,20 @@ Console = require(game:GetService("ReplicatedStorage"):WaitForChild("Scripts"):W
 
 Console.log("Loading dependencies...")
 
-ContextActionService = game:GetService("ContextActionService")
-Workspace = game:GetService("Workspace")
 Monitor = require(script.Parent)
-BinaryMonitor = require(script.Parent:WaitForChild("BinaryMonitor"))
-Method = require(script.Parent.Parent:WaitForChild("ControlScheme"):WaitForChild("Control"):WaitForChild("Method"))
+AxisMonitor = require(script.Parent:WaitForChild("AxisMonitor"))
+InputType = require(script.Parent.Parent:WaitForChild("InputType"))
+Direction = require(script.Parent.Parent:WaitForChild("VectorDirection"))
 
 Console.log("Loaded.")
 Console.log("Assembling script...")
 Console.log("Initializing globals...")
 
--- Direction enum
-direction = {
-	["Up"] = 1,
-	["Down"] = 2,
-	["Left"] = 3,
-	["Right"] = 4
-}
-
 -- Direction vectors
-directional_vector = {
-	[direction.Up] = Vector3.new(0, 0, 1),
-	[direction.Down] = Vector3.new(0, 0, -1),
-	[direction.Left] = Vector3.new(-1, 0, 0),
-	[direction.Right] = Vector3.new(1, 0, 0)
+directional_value = {
+	[Direction.Vertical] = Vector2.new(0, 1),
+	[Direction.Horizontal] = Vector2.new(1, 0)
 }
-
-function update(object, inputState, inputObject, id)
-	local action = object.actions[id]
-	if inputObject.UserInputType == action.Type then
-		local vector = Vector3.new(0, 0, 0)
-		if action.Monitor ~= nil then
-			local monitor = action.Monitor
-			if monitor:GetValue() then
-				vector = directional_vector[direction[monitor.Control.Name]] or vector
-			end
-		else
-			vector = inputObject.Position
-			if action.Offset ~= nil then
-				local viewport = Workspace.CurrentCamera.ViewportSize
-				local offsetVector = Vector3.new(action.Offset.X.Offset + viewport.X * action.Offset.X.Scale, 0, action.Offset.Y.Offset + viewport.Y * action.Offset.Y.Scale)
-				vector = vector + offsetVector
-			end
-		end
-		action.Vector = vector
-		vector = Vector3.new(0, 0, 0)
-		local piecewiseVector = Vector3.new(0, 0, 0)
-		local pieces = 0
-		for _, action in ipairs(object.actions) do
-			if action.Monitor ~= nil then
-				piecewiseVector = piecewiseVector + action.Vector
-				pieces = pieces + 1
-			else
-				vector = vector + action.Vector
-			end
-		end
-		vector = vector + (piecewiseVector.Unit * (pieces / 4))
-		object.value = vector.Unit
-		object.updated = true
-	end
-	return Enum.ContextActionResult.Pass
-end
 
 Console.log("Initialized.")
 Console.log("Initializing locals...")
@@ -72,49 +25,58 @@ VectorMonitor.__index = VectorMonitor
 
 function VectorMonitor.new()
 	local self = setmetatable({}, VectorMonitor)
-	self.actions = {}
-	self.value = Vector3.new(0, 0, 0)
 	return self
 end
 
-function VectorMonitor:BindControl()
-	if not self.bound and self.Control ~= nil and self.Control.Method == Method.Vector then
-		for _, input in ipairs(self.Control.Inputs) do
-			if input.Scheme ~= nil then
-				local schemeName = self.SchemeName .. ":" .. self.Control.Name
-				for _, control in pairs(input.Scheme.ControlSet) do
-					local monitor = BinaryMonitor.new()
-					monitor.Control = control
-					monitor.SchemeName = schemeName
-					for _, subInput in ipairs(control.Inputs) do
-						local name = self.inputName(schemeName, control.Name, tostring(subInput.Type), tostring(subInput.Code), "Vector")
-						table.insert(self.actions, {["Name"] = name, ["Vector"] = Vector3.new(0, 0, 0), ["Type"] = subInput.Type, ["Offset"] = subInput.Offset, ["Monitor"] = monitor})
-						ContextActionService:BindAction(name, function(actionName, inputState, inputObject) update(self, inputState, inputObject, #self.actions) end, false, subInput.Code)
-					end
-					monitor:BindControl()
-				end 
-			else
-				local name = self.inputName(self.SchemeName, self.Control.Name, tostring(input.Type), tostring(input.Code), "Vector")
-				table.insert(self.actions, {["Name"] = name, ["Vector"] = Vector3.new(0, 0, 0), ["Type"] = input.Type, ["Offset"] = input.Offset})
-				ContextActionService:BindAction(name, function(actionName, inputState, inputObject) update(self, inputState, inputObject, #self.actions) end, false, input.Code)
+function VectorMonitor:transformValue(input, value)
+	local type = input.Type
+	local offset = (input.Offset or Vector2.new(0, 0)))
+	if type == InputType.None or type == InputType.Keyboard or type == InputType.MouseButton or type == InputType.GamepadButton then
+		return ((value and Vector2.new(0, 1)) or Vector2.new(0, 0)) + offset, 1
+	elseif type == InputType.MouseMovement or type == InputType.GamepadDirection then
+		if input.Code == Enum.KeyCode.ButtonL2 or input.Code == Enum.KeyCode.ButtonR2 then
+			return Vector2.new(0, value.Z) + offset, 1
+		else
+			return Vector2.new(value.X, value.Y) + offset, 1
+		end
+	elseif type = InputType.Scheme then
+		local schemeValue = Vector2.new(0, 0)
+		for id, enum in pairs(Direction) do
+			local monitor = input.Code[id]
+			schemeValue = schemeValue + (directional_value[enum] * monitor:Update())
+		end
+		return schemeValue + offset, 1
+	end
+	return Vector2.new(0, 0), 1
+end
+
+function VectorMonitor:addValue(original, new)
+	return original + new
+end
+
+function VectorMonitor:scaleValue(value, scale)
+	return value / scale
+end
+
+function VectorMonitor:nullValue()
+	return Vector2.new(0, 0)
+end
+
+function VectorMonitor:processEntry(entry)
+	if entry.Type == InputType.Scheme then
+		local scheme = entry.Code
+		entry.Code = {}
+		for id, _ in pairs(Direction) do
+			if scheme.ControlSet[id] ~= nil then
+				local monitor = AxisMonitor.new()
+				monitor:Bind(scheme.ControlSet[id])
+				entry.Code[id] = monitor
 			end
 		end
-		self.bound = true
 	end
 end
 
-function VectorMonitor:UnbindControl()
-	if self.bound then
-		for _, action in ipairs(self.actions) do
-			ContextActionService:UnbindAction(action.Name)
-			if action.Monitor ~= nil then
-				action.Monitor:UnbindControl()
-			end
-		end
-		self.actions = {}
-		self.bound = false
-		self.value = Vector3.new(0, 0, 0)
-	end
+function VectorMonitor:clean()
 end
 
 Console.log("Initialized.")

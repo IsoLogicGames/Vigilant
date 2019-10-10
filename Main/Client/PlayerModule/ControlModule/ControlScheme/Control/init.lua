@@ -6,7 +6,7 @@
 -- @field Inputs the set of inputs that triggers this control
 -- @field Name the name of this control
 -- @field Description the description of this control
--- @field Method the input method of this control
+-- @field Method the @{ControlMethod} of this control
 -- @author LastTalon
 -- @see Input
 -- @see Method

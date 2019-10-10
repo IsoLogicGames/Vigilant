@@ -4,31 +4,41 @@ Console.log("Loading dependencies...")
 
 Player = game:GetService("Players").LocalPlayer
 PlayerScripts = Player:WaitForChild("PlayerScripts")
-Controls = require(PlayerScripts:WaitForChild("PlayerModule")).Controls
+Controls = require(PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule"))
 ControlScheme = require(PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule"):WaitForChild("ControlScheme"))
-ControlMethod = require(PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule"):WaitForChild("ControlScheme"):WaitForChild("Control"):WaitForChild("Method"))
+ControlMethod = require(PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule"):WaitForChild("ControlScheme"):WaitForChild("ControlMethod"))
+DirectionMethod = require(PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule"):WaitForChild("ControlScheme"):WaitForChild("DirectionMethod"))
+InputType = require(PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule"):WaitForChild("ControlScheme"):WaitForChild("InputType"))
 
 Console.log("Loaded.")
 Console.log("Assembling script...")
 Console.log("Initializing globals...")
 
---- Creates a control scheme of binary controls to use as a vector control.
+--- Creates a control scheme of axis controls to use as a vector control.
 function vectorScheme()
 	local scheme = ControlScheme.new()
 	local control
-	local input
+	
+	control = scheme:Add("Vertical")
+		control.Name = "Vertical"
+		control.Method = ControlMethod.Axis
+	control = scheme:Add("Horizontal")
+		control.Name = "Horizontal"
+		control.Method = ControlMethod.Axis
+	
+	return scheme
+end
+
+--- Creates a control scheme of binary controls to use as a axis control.
+function axisScheme()
+	local scheme = ControlScheme.new()
+	local control
 	
 	control = scheme:Add("Up")
 		control.Name = "Up"
 		control.Method = ControlMethod.Binary
 	control = scheme:Add("Down")
 		control.Name = "Down"
-		control.Method = ControlMethod.Binary
-	control = scheme:Add("Left")
-		control.Name = "Left"
-		control.Method = ControlMethod.Binary
-	control = scheme:Add("Right")
-		control.Name = "Right"
 		control.Method = ControlMethod.Binary
 	
 	return scheme
@@ -75,41 +85,49 @@ end
 function defaultControlScheme()
 	local default = controlScheme()
 	local input
-	local subInput
+	local vectorInput
+	local axisInput
 	
 	default.Name = "Default Scheme"
 	input = default.ControlSet.Move:Add()
-		input.Scheme = vectorScheme()
-		subInput = input.Scheme.ControlSet.Up:Add()
-			subInput.Type = Enum.UserInputType.Keyboard
-			subInput.Code = Enum.KeyCode.W
-		subInput = input.Scheme.ControlSet.Down:Add()
-			subInput.Type = Enum.UserInputType.Keyboard
-			subInput.Code = Enum.KeyCode.S
-		subInput = input.Scheme.ControlSet.Left:Add()
-			subInput.Type = Enum.UserInputType.Keyboard
-			subInput.Code = Enum.KeyCode.A
-		subInput = input.Scheme.ControlSet.Right:Add()
-			subInput.Type = Enum.UserInputType.Keyboard
-			subInput.Code = Enum.KeyCode.D
+		input.Type = InputType.Scheme
+		input.Code = vectorScheme()
+		vectorInput = input.Code.ControlSet.Vertical:Add()
+			vectorInput.Type = InputType.Scheme
+			vectorInput.Code = axisScheme()
+			axisInput = vectorInput.Code.ControlSet.Up:Add()
+				axisInput.Type = InputType.Keyboard
+				axisInput.Code = Enum.KeyCode.W
+			axisInput = vectorInput.Code.ControlSet.Down:Add()
+				axisInput.Type = InputType.Keyboard
+				axisInput.Code = Enum.KeyCode.S
+		vectorInput = input.Scheme.ControlSet.Horizontal:Add()
+			vectorInput.Type = InputType.Scheme
+			vectorInput.Code = axisScheme()
+			axisInput = vectorInput.Code.ControlSet.Up:Add()
+				axisInput.Type = InputType.Keyboard
+				axisInput.Code = Enum.KeyCode.A
+			axisInput = vectorInput.Code.ControlSet.Down:Add()
+				axisInput.Type = InputType.Keyboard
+				axisInput.Code = Enum.KeyCode.D
 	input = default.ControlSet.Direction:Add()
-		input.Type = Enum.UserInputType.MouseMovement
-		input.Code = Enum.UserInputType.MouseMovement
+		input.Type = InputType.MouseMovement
+		input.Code = DirectionMethod.Absolute
 		input.Offset = UDim2.new(0.5, 0, 0.5, 0)
 	input = default.ControlSet.Ability1:Add()
-		input.Type = Enum.UserInputType.MouseButton1
+		input.Type = InputType.MouseButton
 		input.Code = Enum.UserInputType.MouseButton1
 	input = default.ControlSet.Ability2:Add()
-		input.Type = Enum.UserInputType.MouseButton2
+		input.Type = InputType.MouseButton
 		input.Code = Enum.UserInputType.MouseButton2
 	input = default.ControlSet.Ability3:Add()
-		input.Type = Enum.UserInputType.Keyboard
+		input.Type = InputType.Keybaord
 		input.Code = Enum.KeyCode.E
 	input = default.ControlSet.Ability4:Add()
-		input.Type = Enum.UserInputType.Keyboard
+		input.Type = InputType.Keybaord
 		input.Code = Enum.KeyCode.Q
 	input = default.ControlSet.Menu:Add()
-		input.Type = Enum.UserInputType.Keyboard
+		input.Type = InputType.Keybaord
 		input.Code = Enum.KeyCode.Tab
 	
 	return default
