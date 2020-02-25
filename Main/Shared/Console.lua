@@ -28,7 +28,7 @@ function Message:ToString()
 	elseif self.Type == MessageType.Error then
 		type = "Error"
 	end
-	return string.format("%02d:%02d:%02d - %s - %s - %s", date.hour, date.min, date.sec, self.Source, type, self.Message)
+	return string.format("%02d:%02d:%02d - %s %s: %s", date.hour, date.min, date.sec, self.Source, type, self.Message)
 end
 
 function Message:Output()
