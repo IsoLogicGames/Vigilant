@@ -1,4 +1,9 @@
+print("Logger: Initializing variables...")
+
 local Logger = {}
+
+print("Logger: Constructing objects...")
+
 Logger.__index = Logger
 
 function Logger.new()
@@ -14,5 +19,7 @@ end
 function Logger:Entries()
 	return ipairs(self.log)
 end
+
+print("Logger: Done.")
 
 return Logger

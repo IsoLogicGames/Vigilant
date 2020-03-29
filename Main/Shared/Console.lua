@@ -1,4 +1,8 @@
+print("Console: Loading dependencies...")
+
 local Logger = require(game:GetService("ReplicatedStorage"):WaitForChild("Scripts"):WaitForChild("Logger"))
+
+print("Console: Initializing constants...")
 
 local MessageType = {
 	["Log"] = 1,
@@ -6,14 +10,20 @@ local MessageType = {
 	["Error"] = 3
 }
 
+print("Console: Constructing functions...")
+
 local function formatMessage(message, source)
-	source = source or "Console"
+	source = source or "Log"
 	return string.format("%s: %s", source, message)
 end
+
+print("Console: Initializing variables...")
 
 local Console = {}
 local ConsoleLogger = Logger.new()
 local defaultOutput = true
+
+print("Console: Constructing objects...")
 
 Console.__index = Console
 
@@ -68,5 +78,7 @@ function Console.sourced(source)
 	
 	return sourcedConsole
 end
+
+print("Console: Done.")
 
 return Console
