@@ -1,67 +1,69 @@
-MessageType = {
-	["Standard"] = 1,
+local Logger = require(game:GetService("ReplicatedStorage"):WaitForChild("Scripts"):WaitForChild("Logger"))
+
+local MessageType = {
+	["Log"] = 1,
 	["Warning"] = 2,
 	["Error"] = 3
 }
 
+local function formatMessage(message, source)
+	source = source or "Console"
+	return string.format("%s: %s", source, message)
+end
+
 local Console = {}
-local log = {}
-local Message = {}
-Message.__index = Message
+local ConsoleLogger = Logger.new()
+local defaultOutput = true
 
-function Message.new(message, type, source, time)
-	local self = setmetatable({}, Message)
-	self.Message = message
-	self.Type = type or MessageType.Standard
-	self.Source = source or "Log"
-	self.Time = time or os.time()
-	return self
+Console.__index = Console
+
+function Console.setDefaultOutput(value)
+	value = value or false and true
+	defaultOutput = value
 end
 
-function Message:ToString()
-	local date = os.date("*t", self.Time)
-	local type = "Unknown"
-	if self.Type == MessageType.Standard then
-		type = "Console"
-	elseif self.Type == MessageType.Warning then
-		type = "Warning"
-	elseif self.Type == MessageType.Error then
-		type = "Error"
+function Console.getDefaultOutput()
+	return defaultOutput
+end
+
+function Console.entries()
+	return ConsoleLogger:Entries()
+end
+
+function Console.log(message, source)
+	ConsoleLogger:Log(message, source, MessageType.Log)
+	if defaultOutput then
+		print(formatMessage(message, source))
 	end
-	return string.format("%02d:%02d:%02d - %s %s: %s", date.hour, date.min, date.sec, self.Source, type, self.Message)
 end
 
-function Message:Output()
-	print(self:ToString())
+function Console.warn(message, source)
+	ConsoleLogger:Log(message, source, MessageType.Warning)
+	if defaultOutput then
+		warn(formatMessage(message, source))
+	end
 end
 
-function Console.log(string, type, source)
-	local message = Message.new(string, type, source)
-	table.insert(log, message)
-	message:Output()
-end
-
-function Console.warn(string, source)
-	Console.log(string, MessageType.Warning, source)
-end
-
-function Console.error(string, source)
-	Console.log(string, MessageType.Error, source)
+function Console.error(message, source)
+	ConsoleLogger:Log(message, source, MessageType.Error)
+	if defaultOutput then
+		error(formatMessage(message, source))
+	end
 end
 
 function Console.sourced(source)
-	local sourcedConsole = {}
+	local sourcedConsole = setmetatable({}, Console)
 	
-	function sourcedConsole.log(string, type)
-		Console.log(string, type, source)
+	function sourcedConsole.log(message)
+		Console.log(message, source)
 	end
 	
-	function sourcedConsole.warn(string)
-		Console.warn(string, source)
+	function sourcedConsole.warn(message)
+		Console.warn(message, source)
 	end
 	
-	function sourcedConsole.error(string)
-		Console.error(string, source)
+	function sourcedConsole.error(message)
+		Console.error(message, source)
 	end
 	
 	return sourcedConsole
