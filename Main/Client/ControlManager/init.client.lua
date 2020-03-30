@@ -1,20 +1,32 @@
+--- Sets up the player controls.
+-- Creates the default controls and binds them to the ControlManager.
+--
+-- @author LastTalon
+-- @version 0.1.0, 2020-04-16
+-- @since 0.1
+--
+-- @module ControlManager
+
 Console = require(game:GetService("ReplicatedStorage"):WaitForChild("Scripts"):WaitForChild("Console")).sourced("Control Manager")
 
+-- Dependencies --
 Console.log("Loading dependencies...")
 
 Player = game:GetService("Players").LocalPlayer
 PlayerScripts = Player:WaitForChild("PlayerScripts")
+
 Controls = require(PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule"))
 ControlScheme = require(PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule"):WaitForChild("ControlScheme"))
 ControlMethod = require(PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule"):WaitForChild("ControlScheme"):WaitForChild("ControlMethod"))
 DirectionMethod = require(PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule"):WaitForChild("ControlScheme"):WaitForChild("DirectionMethod"))
 InputType = require(PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule"):WaitForChild("ControlScheme"):WaitForChild("InputType"))
 
-Console.log("Loaded.")
-Console.log("Assembling script...")
-Console.log("Initializing globals...")
+-- Functions --
+Console.log("Constructing functions...")
 
 --- Creates a control scheme of axis controls to use as a vector control.
+--
+-- @return the control scheme scheme
 function vectorScheme()
 	local scheme = ControlScheme.new()
 	local control
@@ -29,7 +41,9 @@ function vectorScheme()
 	return scheme
 end
 
---- Creates a control scheme of binary controls to use as a axis control.
+--- Creates a control scheme of binary controls to use as an axis control.
+--
+-- @return the control scheme
 function axisScheme()
 	local scheme = ControlScheme.new()
 	local control
@@ -45,6 +59,8 @@ function axisScheme()
 end
 
 --- Creates the main control scheme without inputs.
+--
+-- @return the control scheme
 function controlScheme()
 	local scheme = ControlScheme.new()
 	local control
@@ -82,6 +98,8 @@ function controlScheme()
 end
 
 --- Creates the control scheme with default inputs.
+--
+-- @return the control scheme
 function defaultControlScheme()
 	local default = controlScheme()
 	local input
@@ -133,12 +151,12 @@ function defaultControlScheme()
 	return default
 end
 
-Console.log("Initialized.")
-Console.log("Assembled.")
+-- Main --
 Console.log("Running...")
 
 Controls.ControlScheme = defaultControlScheme()
 Controls:BindControls()
 Controls:SetMove("Move")
 
+-- End --
 Console.log("Done.")

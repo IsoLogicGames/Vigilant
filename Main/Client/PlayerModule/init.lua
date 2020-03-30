@@ -1,31 +1,38 @@
 --- The main player module.
--- A singleton object responsible initializing and providing access other client
--- singletons.
--- @module ControlModule
--- @field Cameras the camera module singleton
--- @field Controls the control module singleton
+-- A singleton object responsible for initializing and providing access to
+-- other client singletons, namely the ControlModule and CameraModule.
+--
 -- @author LastTalon
+-- @version 0.1.0, 2020-04-07
+-- @since 0.1
+--
+-- @module ControlModule
+-- @field Cameras the CameraModule singleton
+-- @field Controls the ControlModule singleton
 
 Console = require(game:GetService("ReplicatedStorage"):WaitForChild("Scripts"):WaitForChild("Console")).sourced("Player Module")
 
+-- Dependencies --
 Console.log("Loading dependencies...")
 
 Cameras = require(script:WaitForChild("CameraModule"))
 Controls = require(script:WaitForChild("ControlModule"))
 
-Console.log("Loaded.")
-Console.log("Assembling script...")
-Console.log("Initializing locals...")
+-- Variables --
+Console.log("Initializing variables...")
 
 local PlayerModule = {}
-PlayerModule.__index = PlayerModule
-
 local instance
 
---- The contructor for the player module singleton.
--- Creates a new reference copy of the singleton. This is the same object you
--- get when you require the control module. The only use this has is for
--- inheritance or as a quick copy to pass around.
+-- Local Objects --
+Console.log("Constructing objects...")
+
+PlayerModule.__index = PlayerModule
+
+--- The contructor for the singleton.
+-- Creates a new singleton if none exists. Always returns the same object
+-- initially created.
+--
 -- @return the singleton
 function PlayerModule.new()
 	if instance == nil then
@@ -37,7 +44,7 @@ function PlayerModule.new()
 	return instance
 end
 
-Console.log("Initialized.")
-Console.log("Assembled.")
+-- End --
+Console.log("Done.")
 
 return PlayerModule.new()

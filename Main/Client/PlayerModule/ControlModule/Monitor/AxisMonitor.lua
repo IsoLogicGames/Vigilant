@@ -1,5 +1,16 @@
+--- A Monitor with an axis value.
+-- Provides a floating point value for the Control being activated. This can be
+-- thought of as a 1 dimensional vector.
+--
+-- @author LastTalon
+-- @version 0.1.0, 2020-04-09
+-- @since 0.1
+--
+-- @module AxisMonitor
+
 Console = require(game:GetService("ReplicatedStorage"):WaitForChild("Scripts"):WaitForChild("Console")).sourced("Axis Monitor")
 
+-- Dependencies --
 Console.log("Loading dependencies...")
 
 Monitor = require(script.Parent)
@@ -7,9 +18,8 @@ BinaryMonitor = require(script.Parent:WaitForChild("BinaryMonitor"))
 InputType = require(script.Parent.Parent:WaitForChild("InputType"))
 Direction = require(script.Parent.Parent:WaitForChild("AxisDirection"))
 
-Console.log("Loaded.")
-Console.log("Assembling script...")
-Console.log("Initializing globals...")
+-- Constants --
+Console.log("Initializing constants...")
 
 -- Direction floats
 directional_value = {
@@ -17,17 +27,35 @@ directional_value = {
 	[Direction.Down] = -1.0
 }
 
-Console.log("Initialized.")
-Console.log("Initializing locals...")
+-- Variables --
+Console.log("Initializing variables...")
 
 local AxisMonitor = Monitor.new()
+
+-- Local Objects --
+Console.log("Constructing objects...")
+
 AxisMonitor.__index = AxisMonitor
 
+--- The default constructor.
+--
+-- @return the new AxisMonitor
 function AxisMonitor.new()
 	local self = setmetatable({}, AxisMonitor)
 	return self
 end
 
+--- Transforms the value to a floating point number.
+-- For most binary InputTypes true is transformed to 1 and false transformed to
+-- 0. For vector InputTypes the vector is transformed to a single axis of the
+-- vector. For scheme InputTypes the scheme's Monitor is updated and the value
+-- retrieved. An offset is applied to all InputTypes and all InputTypes get an
+-- equal scale.
+--
+-- @param input the input that produced the value being transformed
+-- @param value the value being transformed
+-- @return the transformed value. A floating point number.
+-- @return the scaling factor. Always 1, all scaling is even.
 function AxisMonitor:transformValue(input, value)
 	local type = input.Type
 	local offset = (input.Offset or 0)
@@ -50,18 +78,36 @@ function AxisMonitor:transformValue(input, value)
 	return 0, 1
 end
 
+--- Adds two axis values together.
+-- Combines the values using floating point addition.
+--
+-- @param lhs the left hand side operand of the add operation
+-- @param rhs the right hand side operand of the add operation
+-- @return the added value.
 function AxisMonitor:addValue(original, new)
 	return original + new
 end
 
+--- Scales an Input's value by a scaling factor.
+-- Scales using floating point division.
+--
+-- @param value the value to be scaled
+-- @param scale the scaling factor
+-- @return the scaled value
 function AxisMonitor:scaleValue(value, scale)
 	return value / scale
 end
 
+--- Gets the default value of 0 for a AxisMonitor.
+--
+-- @return the default value. Always 0.
 function AxisMonitor:nullValue()
 	return 0
 end
 
+--- Creates a Monitor for any entries with binary schemes.
+--
+-- @param entry the entry to process
 function AxisMonitor:processEntry(entry)
 	if entry.Type == InputType.Scheme then
 		local scheme = entry.Code
@@ -76,10 +122,12 @@ function AxisMonitor:processEntry(entry)
 	end
 end
 
+--- Does no cleaning.
+-- AxisMonitor keeps no special state, so no special cleaning is needed.
 function AxisMonitor:clean()
 end
 
-Console.log("Initialized.")
-Console.log("Assembled.")
+-- End --
+Console.log("Done.")
 
 return AxisMonitor.new()

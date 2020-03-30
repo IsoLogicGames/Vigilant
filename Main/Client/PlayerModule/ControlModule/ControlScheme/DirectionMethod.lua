@@ -1,23 +1,33 @@
---- The direction method enum
--- The direction methods are None, Absolute, and Relative. These are used with
--- an Input to tell how to measure directional inputs using the
+--- A type for determining how to read a directional Input.
+-- The DirectionMethods are None, Absolute, and Relative. These are used with
+-- an Input to tell how to measure directional Inputs using the
 -- UserInputService.
--- @module DirectionMethod
+--
 -- @author LastTalon
+-- @version 0.1.0, 2020-04-16
+-- @since 0.1
+--
+-- @module DirectionMethod
+--
 -- @see Input
 
 Console = require(game:GetService("ReplicatedStorage"):WaitForChild("Scripts"):WaitForChild("Console")).sourced("InputType")
 
-Console.log("Assembling script...")
-Console.log("Initializing locals...")
+-- Constants --
+Console.log("Initializing constants...")
 
-local method = {
-	["None"] = 1, -- The direction is not measured.
-	["Absolute"] = 2, -- The direction is measured from the origin.
-	["Relative"] = 3 -- The direction is measured relative to its last direction.
+--- The DirectionMethod enum.
+--
+-- @field None the direction is not measured
+-- @field Absolute the direction is measured from the origin
+-- @field Relative the direction is measured relative to its last direction
+local Method = {
+	["None"] = 1,
+	["Absolute"] = 2,
+	["Relative"] = 3
 }
 
-Console.log("Initialized.")
-Console.log("Assembled.")
+-- End --
+Console.log("Done.")
 
-return method
+return Method

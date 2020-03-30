@@ -1,17 +1,44 @@
+--- Dispatches events between client and server
+-- Sends events between the client and the server and automatically triggers
+-- any Commands that are registered. Allows creation of a network of Commands
+-- for communication between client and server, forming the backbone of a
+-- communication protocol.
+--
+-- @author LastTalon
+-- @version 0.1.0, 2020-04-03
+-- @since 0.1
+--
+-- @module Dispatcher
+-- @field OnCommand the Event registrar
+--
+-- @see Command
+-- @see Event
+
 Console = require(game:GetService("ReplicatedStorage"):WaitForChild("Scripts"):WaitForChild("Console")).sourced("Dispatcher")
 
+-- Dependencies --
 Console.log("Loading dependencies...")
 
 RunService = game:GetService("RunService")
 Event = require(game:GetService("ReplicatedStorage"):WaitForChild("Scripts"):WaitForChild("Event"))
 
-Console.log("Loaded.")
-Console.log("Assembling script...")
-Console.log("Initializing locals...")
+-- Variables --
+Console.log("Initializing variables...")
 
 local Dispatcher = {}
+
+-- Local Objects --
+Console.log("Constructing objects...")
+
 Dispatcher.__index = Dispatcher
 
+--- The Dispatcher constructor.
+-- Creates a new Dispatcher attached to the provided RemoteEvent. Optionally
+-- binds the dispatcher.
+--
+-- @param event the RemoteEvent this Dispatcher binds to
+-- @param bind binds this Dispatcher if true
+-- @return the new Dispatcher
 function Dispatcher.new(event, bind)
 	local self = setmetatable({}, Dispatcher)
 	bind = bind or false
@@ -29,6 +56,15 @@ function Dispatcher.new(event, bind)
 	return self
 end
 
+--- Updates the Dispatcher.
+-- Updates the Dispatcher wtih a new tick as well as all attached Commands and
+-- any listening functions. This is automatically called by the RunService.
+-- This should not normally be called directly.
+--
+-- @param time time passed by RunService
+-- @param step step passed by RunService
+--
+-- @see RunService
 function Dispatcher:update(time, step)
 	local tick = math.floor(time * 30)
 	if tick > self.currentTick then
@@ -53,6 +89,13 @@ function Dispatcher:update(time, step)
 	end
 end
 
+--- Updates the Command queue.
+-- Updates the Command queue with any additional commands sent by the
+-- RemoteEvent. The Commands are not processed until the next tick. This is
+-- automatically called by the RemoteEvent. This should not normally be called
+-- directly.
+--
+-- @param ... all parameters passed by the RemoteEvent
 function Dispatcher:updateRemoteEvent(...)
 	local args = {...}
 	local command = {}
@@ -69,6 +112,9 @@ function Dispatcher:updateRemoteEvent(...)
 	table.insert(self.commandQueue, command)
 end
 
+--- Binds the Dispatcher.
+-- Connects the RemoteEvent and RunService to updateRemoteEvent and update
+-- respectively.
 function Dispatcher:Bind()
 	if self.remoteConnection == nil and self.remoteEvent ~= nil then
 		self.commandQueue = {}
@@ -83,6 +129,8 @@ function Dispatcher:Bind()
 	end
 end
 
+--- Unbinds the Dispatcher.
+-- Disconnects the RemoteEvent and RunService listeners.
 function Dispatcher:Unbind()
 	if self.remoteConnection == nil then
 		self.commandQueue = nil
@@ -95,16 +143,24 @@ function Dispatcher:Unbind()
 	end
 end
 
+--- Adds a Command to this Dispatcher.
+-- Automatically registers the Command's listener and fires the Command during
+-- the tick update.
+--
+-- @param command the Command to add
 function Dispatcher:Add(command)
 	self.commands[command.name] = command
 	self.OnCommand:Connect(function(...) command:Listener(...) end)
 end
 
+--- Removes a Command from this Dispatcher.
+--
+-- @param command the Command to remove
 function Dispatcher:Remove(command)
 	self.commands[command.name] = nil
 end
 
-Console.log("Initialized.")
-Console.log("Assembled.")
+-- End --
+Console.log("Done.")
 
 return Dispatcher

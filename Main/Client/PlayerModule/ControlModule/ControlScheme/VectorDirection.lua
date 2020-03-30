@@ -1,22 +1,31 @@
---- The vector direction enum
--- The directions are Vertical, and Horizontal. These are used with an @{Input}
--- and a @{ControlScheme} to create a vector input from two axis inputs.
--- @module VectorDirection
+--- A type for determining the orientation of a vector Input.
+-- The directions are Vertical, and Horizontal. These are used with an Input
+-- and a ControlScheme to create a vector Input from two axis Inputs.
+--
 -- @author LastTalon
+-- @version 0.1.0, 2020-04-16
+-- @since 0.1
+--
+-- @module VectorDirection
+--
 -- @see ControlScheme
 -- @see Input
 
 Console = require(game:GetService("ReplicatedStorage"):WaitForChild("Scripts"):WaitForChild("Console")).sourced("VectorDirection")
 
-Console.log("Assembling script...")
-Console.log("Initializing locals...")
+-- Constants --
+Console.log("Initializing constants...")
 
-local direction = {
-	["Vertical"] = 1, -- The vertical direction.
-	["Horizontal"] = 2, -- The horizontal direction.
+--- The VectorDirection enum.
+--
+-- @field Vertical the vertical direction
+-- @field Horizontal the horizontal direction
+local Direciton = {
+	["Vertical"] = 1,
+	["Horizontal"] = 2
 }
 
-Console.log("Initialized.")
-Console.log("Assembled.")
+-- End --
+Console.log("Done.")
 
-return direction
+return Direction

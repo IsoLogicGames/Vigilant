@@ -1,24 +1,49 @@
+--- A Monitor with a binary value.
+-- Provides a value of either true if the Control is activated, or false, if
+-- its not. Does not provide any scaling, any portion of the Control activates,
+-- the BinaryMonitor will be activated.
+--
+-- @author LastTalon
+-- @version 0.1.0, 2020-04-09
+-- @since 0.1
+--
+-- @module BinaryMonitor
+
 Console = require(game:GetService("ReplicatedStorage"):WaitForChild("Scripts"):WaitForChild("Console")).sourced("Binary Monitor")
 
+-- Dependencies --
 Console.log("Loading dependencies...")
 
 Monitor = require(script.Parent)
 InputType = require(script.Parent.Parent:WaitForChild("InputType"))
 
-Console.log("Loaded.")
-Console.log("Assembling script...")
-Console.log("Initializing locals...")
+-- Variables --
+Console.log("Initializing variables...")
 
 local BinaryMonitor = Monitor.new()
+
+-- Local Objects --
+Console.log("Constructing objects...")
+
 BinaryMonitor.__index = BinaryMonitor
 
---- The constructor for a binary monitor.
--- @return the new binary monitor
+--- The default constructor.
+--
+-- @return the new BinaryMonitor
 function BinaryMonitor.new()
 	local self = setmetatable({}, BinaryMonitor)
 	return self
 end
 
+--- Transforms the value to true or false depending on the InputType.
+-- For most InputTypes no transformation is done. For vector InputTypes
+-- MouseMovement and GamepadDirection a non-zero vector is transformed to true,
+-- while a zero vector is transformed to false.
+--
+-- @param input the input that produced the value being transformed
+-- @param value the value being transformed
+-- @return the transformed value. Either true or false.
+-- @return the scaling factor. Always 0, no scaling is done.
 function BinaryMonitor:transformValue(input, value)
 	local type = input.Type
 	if type == InputType.None or type == InputType.Keyboard or type == InputType.MouseButton or type == InputType.GamepadButton then
@@ -29,25 +54,46 @@ function BinaryMonitor:transformValue(input, value)
 	return false, 0
 end
 
-function BinaryMonitor:addValue(original, new)
-	return original or new
+--- Adds two binary values together.
+-- Combines the values by treating 'or' as the adding operation. Either operand
+-- being true will result in true, false otherwise.
+--
+-- @param lhs the left hand side operand of the add operation
+-- @param rhs the right hand side operand of the add operation
+-- @return the added value. True if lhs or rhs is true, false otherwise.
+function BinaryMonitor:addValue(lhs, rhs)
+	return lhs or rhs
 end
 
+--- Does no scaling.
+-- The value is always returned as is.
+--
+-- @param value the value to be scaled
+-- @param scale the scaling factor
+-- @return the original value with no scaling applied
 function BinaryMonitor:scaleValue(value, scale)
 	return value
 end
 
-function BinaryMonitor:nullValue()
+--- Gets the default value of false for a BinaryMonitor.
+--
+-- @return the default value. Always false.
+function BinaryMonitor:defaultValue()
 	return false
 end
 
-function BinaryMonitor:processEntry()
+--- Performs no processing.
+--
+-- @param entry the entry to process
+function BinaryMonitor:processEntry(entry)
 end
 
+--- Does no cleaning.
+-- BinaryMonitor keeps no special state, so no special cleaning is needed.
 function BinaryMonitor:clean()
 end
 
-Console.log("Initialized.")
-Console.log("Assembled.")
+-- End --
+Console.log("Done.")
 
 return BinaryMonitor.new()

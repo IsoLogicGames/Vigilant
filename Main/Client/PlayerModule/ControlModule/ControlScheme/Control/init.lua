@@ -1,35 +1,46 @@
---- A control mapping.
--- A control object with a name, description, and set of inputs. This is used to
--- represent a particular action the character can perform when some input is
+--- A control mapping of user inputs.
+-- Keeps several Inputs that represent a single control action. Includes the
+-- name, description, and set of Inputs. This is used to represent a particular
+-- action in a game a user can perform when some combination of user input is
 -- given.
--- @module Control
--- @field Inputs the set of inputs that triggers this control
--- @field Name the name of this control
--- @field Description the description of this control
--- @field Method the @{ControlMethod} of this control
+--
 -- @author LastTalon
+-- @version 0.1.0, 2020-04-16
+-- @since 0.1
+--
+-- @module Control
+-- @field Inputs the set of Inputs that triggers this Control
+-- @field Name the name of this Control
+-- @field Description the description of this Control
+-- @field Method the ControlMethod for this Control
+--
 -- @see Input
--- @see Method
+-- @see ControlMethod
 
 Console = require(game:GetService("ReplicatedStorage"):WaitForChild("Scripts"):WaitForChild("Console")).sourced("Control")
 
+-- Dependencies --
 Console.log("Loading dependencies...")
 
 Input = require(script:WaitForChild("Input"))
 
-Console.log("Loaded.")
-Console.log("Assembling script...")
-Console.log("Initializing locals...")
+-- Variables --
+Console.log("Initializing variables...")
 
 local Control = {}
+
+-- Local Objects --
+Console.log("Constructing objects...")
+
 Control.__index = Control
 
---- Constructor for a new control object.
--- Creates a new empty control object with a name and description.
--- @param name the name of the new control object
--- @param description the description of the new control object
--- @param method the input method of the new control object
--- @return the new control object
+--- The parameterized constructor.
+-- Creates a new empty control object with all parameters set.
+--
+-- @param name the name of the Control
+-- @param description the description of the Control
+-- @param method the ControlMethod of the Control
+-- @return the new Control
 function Control.new(name, description, method)
 	local self = setmetatable({}, Control)
 	self.Inputs = {}
@@ -39,26 +50,28 @@ function Control.new(name, description, method)
 	return self
 end
 
---- Adds a new input for this control.
--- Adds the specified input. If no input is specified it creates a new input. It
--- then returns the input that was added.
--- @param input the input to add
--- @return the input added
+--- Adds a new Input to this control.
+-- Adds the specified Input. If none is specified it creates a new Input. It
+-- then returns the Input that was added.
+--
+-- @param input the Input to add
+-- @return the Input added
 function Control:Add(input)
 	input = input or Input.new()
 	table.insert(self.Inputs, input)
 	return input
 end
 
---- Removes an input from this control.
--- Removes the input at the specified index. If no index is specified the last
--- input is removed.
--- @param index the index of the input to remove
+--- Removes an Input from this control.
+-- Removes the Input at the specified index. If no index is specified the last
+-- Input is removed.
+--
+-- @param index the index of the Input to remove
 function Control:Remove(index)
 	table.remove(self.Inputs, index)
 end
 
-Console.log("Initialized.")
-Console.log("Assembled.")
+-- End --
+Console.log("Done.")
 
 return Control

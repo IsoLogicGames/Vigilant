@@ -1,5 +1,15 @@
+--- A Monitor with an vector value.
+-- Provides a two dimensional vector value for the Control being activated.
+--
+-- @author LastTalon
+-- @version 0.1.0, 2020-04-11
+-- @since 0.1
+--
+-- @module VectorMonitor
+
 Console = require(game:GetService("ReplicatedStorage"):WaitForChild("Scripts"):WaitForChild("Console")).sourced("Vector Monitor")
 
+-- Dependencies --
 Console.log("Loading dependencies...")
 
 Monitor = require(script.Parent)
@@ -7,9 +17,8 @@ AxisMonitor = require(script.Parent:WaitForChild("AxisMonitor"))
 InputType = require(script.Parent.Parent:WaitForChild("InputType"))
 Direction = require(script.Parent.Parent:WaitForChild("VectorDirection"))
 
-Console.log("Loaded.")
-Console.log("Assembling script...")
-Console.log("Initializing globals...")
+-- Constants --
+Console.log("Initializing constants...")
 
 -- Direction vectors
 directional_value = {
@@ -17,17 +26,35 @@ directional_value = {
 	[Direction.Horizontal] = Vector2.new(1, 0)
 }
 
-Console.log("Initialized.")
-Console.log("Initializing locals...")
+-- Variables --
+Console.log("Initializing variables...")
 
 local VectorMonitor = Monitor.new()
+
+-- Local Objects --
+Console.log("Constructing objects...")
+
 VectorMonitor.__index = VectorMonitor
 
+--- The default constructor.
+--
+-- @return the new VectorMonitor
 function VectorMonitor.new()
 	local self = setmetatable({}, VectorMonitor)
 	return self
 end
 
+--- Transforms the value to a Vector2.
+-- For most binary InputTypes true is transformed to (0, 1) and false
+-- transformed to (0, 0). For vector InputTypes the Vector3 is transformed to
+-- Vector2 with the axes being dropped depending on the InputType. For scheme
+-- InputTypes the scheme's Monitor is updated and the value retrieved. An
+-- offset is applied to all InputTypes and all InputTypes get an equal scale.
+--
+-- @param input the input that produced the value being transformed
+-- @param value the value being transformed
+-- @return the transformed value. A Vector2.
+-- @return the scaling factor. Always 1, all scaling is even.
 function VectorMonitor:transformValue(input, value)
 	local type = input.Type
 	local offset = (input.Offset or Vector2.new(0, 0)))
@@ -50,18 +77,36 @@ function VectorMonitor:transformValue(input, value)
 	return Vector2.new(0, 0), 1
 end
 
+--- Adds two vector values together.
+-- Combines the values using vector addition.
+--
+-- @param lhs the left hand side operand of the add operation
+-- @param rhs the right hand side operand of the add operation
+-- @return the added value.
 function VectorMonitor:addValue(original, new)
 	return original + new
 end
 
+--- Scales an Input's value by a scaling factor.
+-- Scales using scalar division.
+--
+-- @param value the value to be scaled
+-- @param scale the scaling factor
+-- @return the scaled value
 function VectorMonitor:scaleValue(value, scale)
 	return value / scale
 end
 
+--- Gets the default value of (0, 0) for a VectorMonitor.
+--
+-- @return the default value. Always (0, 0).
 function VectorMonitor:nullValue()
 	return Vector2.new(0, 0)
 end
 
+--- Creates a Monitor for any entries with axis schemes.
+--
+-- @param entry the entry to process
 function VectorMonitor:processEntry(entry)
 	if entry.Type == InputType.Scheme then
 		local scheme = entry.Code
@@ -76,10 +121,12 @@ function VectorMonitor:processEntry(entry)
 	end
 end
 
+--- Does no cleaning.
+-- VectorMonitor keeps no special state, so no special cleaning is needed.
 function VectorMonitor:clean()
 end
 
-Console.log("Initialized.")
-Console.log("Assembled.")
+-- End --
+Console.log("Done.")
 
 return VectorMonitor.new()

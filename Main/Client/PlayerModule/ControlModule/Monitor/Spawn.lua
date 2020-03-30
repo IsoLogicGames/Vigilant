@@ -1,5 +1,18 @@
+--- A Monitor spawning function.
+-- Spawns the appropriate type of Monitor for the Control provided and
+-- automatically binds it to the Monitor.
+--
+-- @author LastTalon
+-- @version 0.1.0, 2020-04-14
+-- @since 0.1
+--
+-- @module Spawn
+--
+-- @see Monitor
+
 Console = require(game:GetService("ReplicatedStorage"):WaitForChild("Scripts"):WaitForChild("Console")).sourced("Monitor Spawn")
 
+-- Dependencies --
 Console.log("Loading dependencies...")
 
 Method = require(script.Parent.Parent:WaitForChild("ControlScheme"):WaitForChild("Control"):WaitForChild("Method"))
@@ -7,9 +20,8 @@ BinaryMonitor = require(script.Parent:WaitForChild("BinaryMonitor"))
 AxisMonitor = require(script.Parent:WaitForChild("AxisMonitor"))
 VectorMonitor = require(script.Parent:WaitForChild("VectorMonitor"))
 
-Console.log("Loaded.")
-Console.log("Assembling script...")
-Console.log("Initializing locals...")
+-- Functions --
+Console.log("Constructing functions...")
 
 local function Spawn(control)
 	local monitor
@@ -26,7 +38,7 @@ local function Spawn(control)
 	return monitor
 end
 
-Console.log("Initialized.")
-Console.log("Assembled.")
+-- End --
+Console.log("Done.")
 
 return Spawn
