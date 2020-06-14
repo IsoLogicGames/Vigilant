@@ -12,7 +12,7 @@
 -- @see Control
 -- @see Input
 
-Console = require(game:GetService("ReplicatedStorage"):WaitForChild("Scripts"):WaitForChild("Console")).sourced("ControlMethod")
+local Console = require(game:GetService("ReplicatedStorage"):WaitForChild("Scripts"):WaitForChild("Console")).sourced("ControlMethod")
 
 -- Constants --
 Console.log("Initializing constants...")

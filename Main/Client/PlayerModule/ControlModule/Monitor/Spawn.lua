@@ -10,15 +10,15 @@
 --
 -- @see Monitor
 
-Console = require(game:GetService("ReplicatedStorage"):WaitForChild("Scripts"):WaitForChild("Console")).sourced("Monitor Spawn")
+local Console = require(game:GetService("ReplicatedStorage"):WaitForChild("Scripts"):WaitForChild("Console")).sourced("Monitor Spawn")
 
 -- Dependencies --
 Console.log("Loading dependencies...")
 
-Method = require(script.Parent.Parent:WaitForChild("ControlScheme"):WaitForChild("Control"):WaitForChild("Method"))
-BinaryMonitor = require(script.Parent:WaitForChild("BinaryMonitor"))
-AxisMonitor = require(script.Parent:WaitForChild("AxisMonitor"))
-VectorMonitor = require(script.Parent:WaitForChild("VectorMonitor"))
+local Method = require(script.Parent.Parent:WaitForChild("ControlScheme"):WaitForChild("Control"):WaitForChild("Method"))
+local BinaryMonitor = require(script.Parent:WaitForChild("BinaryMonitor"))
+local AxisMonitor = require(script.Parent:WaitForChild("AxisMonitor"))
+local VectorMonitor = require(script.Parent:WaitForChild("VectorMonitor"))
 
 -- Functions --
 Console.log("Constructing functions...")

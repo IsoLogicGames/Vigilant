@@ -3,20 +3,20 @@
 -- other client singletons, namely the ControlModule and CameraModule.
 --
 -- @author LastTalon
--- @version 0.1.0, 2020-04-07
+-- @version 0.1.0, 2020-04-28
 -- @since 0.1
 --
 -- @module ControlModule
 -- @field Cameras the CameraModule singleton
 -- @field Controls the ControlModule singleton
 
-Console = require(game:GetService("ReplicatedStorage"):WaitForChild("Scripts"):WaitForChild("Console")).sourced("Player Module")
+local Console = require(game:GetService("ReplicatedStorage"):WaitForChild("Scripts"):WaitForChild("Console")).sourced("Player Module")
 
 -- Dependencies --
 Console.log("Loading dependencies...")
 
-Cameras = require(script:WaitForChild("CameraModule"))
-Controls = require(script:WaitForChild("ControlModule"))
+local Cameras = require(script:WaitForChild("CameraModule"))
+local Controls = require(script:WaitForChild("ControlModule"))
 
 -- Variables --
 Console.log("Initializing variables...")

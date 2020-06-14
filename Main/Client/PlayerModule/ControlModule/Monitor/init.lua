@@ -9,20 +9,20 @@
 --
 -- @module Monitor
 
-Console = require(game:GetService("ReplicatedStorage"):WaitForChild("Scripts"):WaitForChild("Console")).sourced("Monitor")
+local Console = require(game:GetService("ReplicatedStorage"):WaitForChild("Scripts"):WaitForChild("Console")).sourced("Monitor")
 
 -- Dependencies --
 Console.log("Loading dependencies...")
 
-UserInputService = game:GetService("UserInputService")
+local UserInputService = game:GetService("UserInputService")
 
-InputType = require(script.Parent:WaitForChild("InputType"))
-DirectionMethod = require(script.Parent:WaitForChild("DirectionMethod"))
+local InputType = require(script.Parent:WaitForChild("InputType"))
+local DirectionMethod = require(script.Parent:WaitForChild("DirectionMethod"))
 
 -- Functions --
 Console.log("Constructing functions...")
 
-function getDeviceInput(code, device)
+local function getDeviceInput(code, device)
 	local inputs = UserInputService:GetGamepadState(device)
 	for _, input in ipairs(inputs) do
 		if input.KeyCode == code then

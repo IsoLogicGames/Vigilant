@@ -2,24 +2,24 @@
 -- Creates the default controls and binds them to the ControlManager.
 --
 -- @author LastTalon
--- @version 0.1.0, 2020-04-16
+-- @version 0.1.0, 2020-04-28
 -- @since 0.1
 --
 -- @module ControlManager
 
-Console = require(game:GetService("ReplicatedStorage"):WaitForChild("Scripts"):WaitForChild("Console")).sourced("Control Manager")
+local Console = require(game:GetService("ReplicatedStorage"):WaitForChild("Scripts"):WaitForChild("Console")).sourced("Control Manager")
 
 -- Dependencies --
 Console.log("Loading dependencies...")
 
-Player = game:GetService("Players").LocalPlayer
-PlayerScripts = Player:WaitForChild("PlayerScripts")
+local Player = game:GetService("Players").LocalPlayer
+local PlayerScripts = Player:WaitForChild("PlayerScripts")
 
-Controls = require(PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule"))
-ControlScheme = require(PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule"):WaitForChild("ControlScheme"))
-ControlMethod = require(PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule"):WaitForChild("ControlScheme"):WaitForChild("ControlMethod"))
-DirectionMethod = require(PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule"):WaitForChild("ControlScheme"):WaitForChild("DirectionMethod"))
-InputType = require(PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule"):WaitForChild("ControlScheme"):WaitForChild("InputType"))
+local Controls = require(PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule"))
+local ControlScheme = require(PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule"):WaitForChild("ControlScheme"))
+local ControlMethod = require(PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule"):WaitForChild("ControlScheme"):WaitForChild("ControlMethod"))
+local DirectionMethod = require(PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule"):WaitForChild("ControlScheme"):WaitForChild("DirectionMethod"))
+local InputType = require(PlayerScripts:WaitForChild("PlayerModule"):WaitForChild("ControlModule"):WaitForChild("ControlScheme"):WaitForChild("InputType"))
 
 -- Functions --
 Console.log("Constructing functions...")
@@ -27,7 +27,7 @@ Console.log("Constructing functions...")
 --- Creates a control scheme of axis controls to use as a vector control.
 --
 -- @return the control scheme scheme
-function vectorScheme()
+local function vectorScheme()
 	local scheme = ControlScheme.new()
 	local control
 	
@@ -44,7 +44,7 @@ end
 --- Creates a control scheme of binary controls to use as an axis control.
 --
 -- @return the control scheme
-function axisScheme()
+local function axisScheme()
 	local scheme = ControlScheme.new()
 	local control
 	
@@ -61,7 +61,7 @@ end
 --- Creates the main control scheme without inputs.
 --
 -- @return the control scheme
-function controlScheme()
+local function controlScheme()
 	local scheme = ControlScheme.new()
 	local control
 	
@@ -97,10 +97,10 @@ function controlScheme()
 	return scheme
 end
 
---- Creates the control scheme with default inputs.
+--- Creates the main control scheme with default inputs.
 --
 -- @return the control scheme
-function defaultControlScheme()
+local function defaultControlScheme()
 	local default = controlScheme()
 	local input
 	local vectorInput

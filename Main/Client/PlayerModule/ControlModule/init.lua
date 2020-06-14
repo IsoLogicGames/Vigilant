@@ -1,32 +1,32 @@
 --- The main control module.
--- A singleton object responsible for accepting all inputs from the player, and
+-- A singleton object responsible for accepting all inputs from the player and
 -- interpretting controls. It recieves input from the user and fires
 -- corresponding events. Recieves input based on provided ControlSchemes.
 --
 -- @author LastTalon
--- @version 0.1.0, 2020-04-07
+-- @version 0.1.0, 2020-04-28
 -- @since 0.1
 --
 -- @module ControlModule
 
-Console = require(game:GetService("ReplicatedStorage"):WaitForChild("Scripts"):WaitForChild("Console")).sourced("Control Module")
+local Console = require(game:GetService("ReplicatedStorage"):WaitForChild("Scripts"):WaitForChild("Console")).sourced("Control Module")
 
 -- Dependencies --
 Console.log("Loading dependencies...")
 
-RunService = game:GetService("RunService")
-Player = game:GetService("Players").LocalPlayer
+local RunService = game:GetService("RunService")
+local Player = game:GetService("Players").LocalPlayer
 
-CameraModule = require(script.Parent:WaitForChild("CameraModule"))
-ControlMethod = require(script:WaitForChild("ControlScheme"):WaitForChild("Control"):WaitForChild("Method"))
-SpawnMonitor = require(script:WaitForChild("Monitor"):WaitForChild("Spawn"))
+local CameraModule = require(script.Parent:WaitForChild("CameraModule"))
+local ControlMethod = require(script:WaitForChild("ControlScheme"):WaitForChild("Control"):WaitForChild("Method"))
+local SpawnMonitor = require(script:WaitForChild("Monitor"):WaitForChild("Spawn"))
 
 -- Functions --
 Console.log("Constructing functions...")
 
 -- A generic listener function that activates another listener on a specific
 -- command.
-function onCommand(command, fn)
+local function onCommand(command, fn)
 	local listener = function(trigger, value)
 		if trigger == command then
 			fn(value)
@@ -36,22 +36,22 @@ function onCommand(command, fn)
 end
 
 -- The default move listener.
-function onMove(value)
+local function onMove(value)
 	Player:Move(value)
 end
 
 -- The default direction listener.
-function onDirection(value)
+local function onDirection(value)
 	
 end
 
 -- The default camera listener.
-function onCamera(value)
+local function onCamera(value)
 	
 end
 
 -- The control step that is added to the render step in the input priority.
-function onControlStep()
+local function onControlStep()
 	local value
 	for command, monitor in pairs(instance.monitors) do
 		if monitor:Updated() then
@@ -187,8 +187,9 @@ function ControlModule:UnbindControls()
 end
 
 --- Registers a listener for input events.
--- This will fire on all input events and pass (command, value) where command
--- is the command name and value is the value of the event activation.
+-- This will fire on all input events and pass the parameter list
+-- (command, value) where command is the command name and value is the value of
+-- the event activation.
 --
 -- @param fn the function to register as a listener
 -- @return the id of the newly registered listener
@@ -199,7 +200,7 @@ end
 
 --- Registers a listener for a specific input event.
 -- This will fire only on the specified command's activation. It will pass
--- (value) where value is the value of the event activation.
+-- the parameter list (value) where value is the value of the event activation.
 --
 -- @param command the command to listen for
 -- @param fn the function to register as a listener

@@ -18,7 +18,7 @@
 --
 -- @see Control
 
-Console = require(game:GetService("ReplicatedStorage"):WaitForChild("Scripts"):WaitForChild("Console")).sourced("Input")
+local Console = require(game:GetService("ReplicatedStorage"):WaitForChild("Scripts"):WaitForChild("Console")).sourced("Input")
 
 -- Variables --
 Console.log("Initializing variables...")

@@ -9,13 +9,13 @@
 --
 -- @module BinaryMonitor
 
-Console = require(game:GetService("ReplicatedStorage"):WaitForChild("Scripts"):WaitForChild("Console")).sourced("Binary Monitor")
+local Console = require(game:GetService("ReplicatedStorage"):WaitForChild("Scripts"):WaitForChild("Console")).sourced("Binary Monitor")
 
 -- Dependencies --
 Console.log("Loading dependencies...")
 
-Monitor = require(script.Parent)
-InputType = require(script.Parent.Parent:WaitForChild("InputType"))
+local Monitor = require(script.Parent)
+local InputType = require(script.Parent.Parent:WaitForChild("InputType"))
 
 -- Variables --
 Console.log("Initializing variables...")

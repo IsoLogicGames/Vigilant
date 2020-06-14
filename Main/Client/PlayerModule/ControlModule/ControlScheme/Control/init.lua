@@ -17,12 +17,12 @@
 -- @see Input
 -- @see ControlMethod
 
-Console = require(game:GetService("ReplicatedStorage"):WaitForChild("Scripts"):WaitForChild("Console")).sourced("Control")
+local Console = require(game:GetService("ReplicatedStorage"):WaitForChild("Scripts"):WaitForChild("Console")).sourced("Control")
 
 -- Dependencies --
 Console.log("Loading dependencies...")
 
-Input = require(script:WaitForChild("Input"))
+local Input = require(script:WaitForChild("Input"))
 
 -- Variables --
 Console.log("Initializing variables...")

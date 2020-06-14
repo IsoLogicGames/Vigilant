@@ -12,7 +12,7 @@
 --
 -- @see Dispatcher
 
-Console = require(game:GetService("ReplicatedStorage"):WaitForChild("Scripts"):WaitForChild("Console")).sourced("Command")
+local Console = require(game:GetService("ReplicatedStorage"):WaitForChild("Scripts"):WaitForChild("Console")).sourced("Command")
 
 -- Variables --
 Console.log("Initializing variables...")

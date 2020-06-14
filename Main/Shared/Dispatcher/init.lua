@@ -14,13 +14,13 @@
 -- @see Command
 -- @see Event
 
-Console = require(game:GetService("ReplicatedStorage"):WaitForChild("Scripts"):WaitForChild("Console")).sourced("Dispatcher")
+local Console = require(game:GetService("ReplicatedStorage"):WaitForChild("Scripts"):WaitForChild("Console")).sourced("Dispatcher")
 
 -- Dependencies --
 Console.log("Loading dependencies...")
 
-RunService = game:GetService("RunService")
-Event = require(game:GetService("ReplicatedStorage"):WaitForChild("Scripts"):WaitForChild("Event"))
+local RunService = game:GetService("RunService")
+local Event = require(game:GetService("ReplicatedStorage"):WaitForChild("Scripts"):WaitForChild("Event"))
 
 -- Variables --
 Console.log("Initializing variables...")

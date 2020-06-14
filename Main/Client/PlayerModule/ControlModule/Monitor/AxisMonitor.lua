@@ -8,21 +8,21 @@
 --
 -- @module AxisMonitor
 
-Console = require(game:GetService("ReplicatedStorage"):WaitForChild("Scripts"):WaitForChild("Console")).sourced("Axis Monitor")
+local Console = require(game:GetService("ReplicatedStorage"):WaitForChild("Scripts"):WaitForChild("Console")).sourced("Axis Monitor")
 
 -- Dependencies --
 Console.log("Loading dependencies...")
 
-Monitor = require(script.Parent)
-BinaryMonitor = require(script.Parent:WaitForChild("BinaryMonitor"))
-InputType = require(script.Parent.Parent:WaitForChild("InputType"))
-Direction = require(script.Parent.Parent:WaitForChild("AxisDirection"))
+local Monitor = require(script.Parent)
+local BinaryMonitor = require(script.Parent:WaitForChild("BinaryMonitor"))
+local InputType = require(script.Parent.Parent:WaitForChild("InputType"))
+local Direction = require(script.Parent.Parent:WaitForChild("AxisDirection"))
 
 -- Constants --
 Console.log("Initializing constants...")
 
 -- Direction floats
-directional_value = {
+local directional_value = {
 	[Direction.Up] = 1.0,
 	[Direction.Down] = -1.0
 }

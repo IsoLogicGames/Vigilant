@@ -11,7 +11,7 @@
 -- @see ControlScheme
 -- @see Input
 
-Console = require(game:GetService("ReplicatedStorage"):WaitForChild("Scripts"):WaitForChild("Console")).sourced("AxisDirection")
+local Console = require(game:GetService("ReplicatedStorage"):WaitForChild("Scripts"):WaitForChild("Console")).sourced("AxisDirection")
 
 -- Constants --
 Console.log("Initializing constants...")

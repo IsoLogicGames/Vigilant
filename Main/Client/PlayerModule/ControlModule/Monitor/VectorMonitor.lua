@@ -7,21 +7,21 @@
 --
 -- @module VectorMonitor
 
-Console = require(game:GetService("ReplicatedStorage"):WaitForChild("Scripts"):WaitForChild("Console")).sourced("Vector Monitor")
+local Console = require(game:GetService("ReplicatedStorage"):WaitForChild("Scripts"):WaitForChild("Console")).sourced("Vector Monitor")
 
 -- Dependencies --
 Console.log("Loading dependencies...")
 
-Monitor = require(script.Parent)
-AxisMonitor = require(script.Parent:WaitForChild("AxisMonitor"))
-InputType = require(script.Parent.Parent:WaitForChild("InputType"))
-Direction = require(script.Parent.Parent:WaitForChild("VectorDirection"))
+local Monitor = require(script.Parent)
+local AxisMonitor = require(script.Parent:WaitForChild("AxisMonitor"))
+local InputType = require(script.Parent.Parent:WaitForChild("InputType"))
+local Direction = require(script.Parent.Parent:WaitForChild("VectorDirection"))
 
 -- Constants --
 Console.log("Initializing constants...")
 
 -- Direction vectors
-directional_value = {
+local directional_value = {
 	[Direction.Vertical] = Vector2.new(0, 1),
 	[Direction.Horizontal] = Vector2.new(1, 0)
 }
