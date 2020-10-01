@@ -4,7 +4,7 @@
 -- corresponding events. Recieves input based on provided ControlSchemes.
 --
 -- @author LastTalon
--- @version 0.1.0, 2020-04-28
+-- @version 0.1.1, 2020-10-01
 -- @since 0.1
 --
 -- @module ControlModule
@@ -18,8 +18,6 @@ local RunService = game:GetService("RunService")
 local Player = game:GetService("Players").LocalPlayer
 local SharedScripts = game:GetService("ReplicatedStorage"):WaitForChild("Scripts")
 
-local CameraModule = require(script.Parent:WaitForChild("CameraModule"))
-local ControlMethod = require(script:WaitForChild("ControlScheme"):WaitForChild("Control"):WaitForChild("Method"))
 local SpawnMonitor = require(script:WaitForChild("Monitor"):WaitForChild("Spawn"))
 local Event = require(SharedScripts:WaitForChild("Event"))
 
@@ -38,18 +36,19 @@ end
 
 -- The default direction listener.
 local function onDirection(value)
-	
+	-- TODO: Add default direction listener.
 end
 
 -- The default camera listener.
 local function onCamera(value)
-	
+	-- TODO: Add default camera listener.
 end
 
 -- Variables --
 Console.log("Initializing variables...")
 
 local ControlModule = {}
+local instance
 
 -- Local Objects --
 Console.log("Constructing objects...")

@@ -4,7 +4,7 @@
 -- to inherit from in other commands. It should not be instantiated directly.
 --
 -- @author LastTalon
--- @version 0.1.0, 2020-04-05
+-- @version 0.1.1, 2020-10-01
 -- @since 0.1
 --
 -- @module Command
@@ -43,7 +43,7 @@ end
 --
 -- @param tick the current tick of the update
 -- @return a table of all activations for this update
-function Command:Update(tick)
+function Command:Update()
 	Console.warn("Update must be overridden and should not be called from Command.")
 	return {}
 end
@@ -55,7 +55,7 @@ end
 -- Dispatcher.
 --
 -- @param ... all parameters passed by the activating command
-function Command:Listener(...)
+function Command:Listener()
 	Console.warn("Listener must be overridden and should not be called from Command.")
 end
 
