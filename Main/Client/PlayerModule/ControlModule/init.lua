@@ -4,23 +4,24 @@
 -- corresponding events. Recieves input based on provided ControlSchemes.
 --
 -- @author LastTalon
--- @version 0.1.0, 2020-04-28
+-- @version 0.2.1, 2020-10-01
 -- @since 0.1
 --
 -- @module ControlModule
 
-local Console = require(game:GetService("ReplicatedStorage"):WaitForChild("Scripts"):WaitForChild("Console")).sourced("Control Module")
+local Console = require(game:GetService("ReplicatedStorage"):WaitForChild(
+	"Scripts"):WaitForChild("Console")).sourced("Control Module")
 
 -- Dependencies --
 Console.log("Loading dependencies...")
 
 local RunService = game:GetService("RunService")
 local Player = game:GetService("Players").LocalPlayer
-local SharedScripts = game:GetService("ReplicatedStorage"):WaitForChild("Scripts")
+local SharedScripts = game:GetService("ReplicatedStorage"):WaitForChild(
+	"Scripts")
 
-local CameraModule = require(script.Parent:WaitForChild("CameraModule"))
-local ControlMethod = require(script:WaitForChild("ControlScheme"):WaitForChild("Control"):WaitForChild("Method"))
-local SpawnMonitor = require(script:WaitForChild("Monitor"):WaitForChild("Spawn"))
+local SpawnMonitor = require(script:WaitForChild("Monitor"):WaitForChild(
+	"Spawn"))
 local Event = require(SharedScripts:WaitForChild("Event"))
 
 -- Constants --
@@ -66,7 +67,6 @@ function ControlModule.new()
 		local self = setmetatable({}, ControlModule)
 		self.controlsBound = false
 		self.monitors = {}
-		-- self.listeners = {}
 		self.event = Event.new()
 		self.OnCommand = self.event.Registrar
 		instance = self
@@ -92,7 +92,8 @@ end
 -- @param command the name of the command to activate on
 function ControlModule:SetMove(command)
 	if self.moveListener == nil then
-		self.moveListener = self.OnCommand:Connect(self.ListenForCommand(command, onMove))
+		self.moveListener = self.OnCommand:Connect(self.ListenForCommand(command,
+			onMove))
 	end
 end
 
@@ -111,7 +112,8 @@ end
 -- @param command the name of the command to activate on
 function ControlModule:SetDirection(command)
 	if self.directionListener == nil then
-		self.directionListener = self.OnCommand:Connect(self.ListenForCommand(command, onDirection))
+		self.directionListener = self.OnCommand:Connect(
+			self.ListenForCommand(command, onDirection))
 	end
 end
 
@@ -130,7 +132,8 @@ end
 -- @param command the name of the command to activate on
 function ControlModule:SetCamera(command)
 	if self.cameraListener == nil then
-		self.cameraListener = self.OnCommand:Connect(self.ListenForCommand(command, onCamera))
+		self.cameraListener = self.OnCommand:Connect(self.ListenForCommand(command,
+			onCamera))
 	end
 end
 
@@ -171,7 +174,8 @@ function ControlModule:BindControls()
 			end
 		end
 		
-		RunService:BindToRenderStep(RenderStepName, Enum.RenderPriority.Input.Value, onControlStep)
+		RunService:BindToRenderStep(RenderStepName,
+			Enum.RenderPriority.Input.Value, onControlStep)
 		self.controlsBound = true
 	end
 end
