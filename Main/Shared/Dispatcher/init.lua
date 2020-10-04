@@ -5,7 +5,7 @@
 -- communication protocol.
 --
 -- @author LastTalon
--- @version 0.1.0, 2020-04-03
+-- @version 0.1.1, 2020-10-01
 -- @since 0.1
 --
 -- @module Dispatcher
@@ -62,10 +62,9 @@ end
 -- This should not normally be called directly.
 --
 -- @param time time passed by RunService
--- @param step step passed by RunService
 --
 -- @see RunService
-function Dispatcher:update(time, step)
+function Dispatcher:update(time)
 	local tick = math.floor(time * 30)
 	if tick > self.currentTick then
 		self.currentTick = tick
