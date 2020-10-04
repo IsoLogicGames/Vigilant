@@ -1,0 +1,29 @@
+{
+	"name": "Vigilant",
+	"tree": {
+		"$className": "DataModel",
+		"StarterPlayer": {
+			"$className": "StarterPlayer",
+			"StarterPlayerScripts": {
+				"$className": "StarterPlayerScripts",
+				"$path": "Client"
+			}
+		},
+		"ReplicatedFirst": {
+			"$className": "ReplicatedFirst",
+			"Scripts": {
+				"$path": "Loading"
+			}
+		},
+		"ServerScriptService": {
+			"$className": "ServerScriptService",
+			"$path": "Server"
+		},
+		"ReplicatedStorage": {
+			"$className": "ReplicatedStorage",
+			"Scripts": {
+				"$path": "Shared"
+			}
+		}
+	}
+}
