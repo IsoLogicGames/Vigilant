@@ -2,7 +2,7 @@
 -- Creates a simple log, logs entries, and allows iteration over entries.
 --
 -- @author LastTalon
--- @version 0.1.0, 2020-03-29
+-- @version 0.1.1, 2020-10-01
 -- @since 0.1
 --
 -- @module Logger
@@ -33,7 +33,7 @@ end
 --
 -- @param ... parameters to log with the entry
 function Logger:Log(...)
-	table.insert(log, {os.time(), ...})
+	table.insert(self.log, {os.time(), ...})
 end
 
 --- An iterator factory for the log.

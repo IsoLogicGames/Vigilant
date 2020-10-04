@@ -2,7 +2,7 @@
 -- Provides a two dimensional vector value for the Control being activated.
 --
 -- @author LastTalon
--- @version 0.1.0, 2020-04-11
+-- @version 0.1.1, 2020-10-01
 -- @since 0.1
 --
 -- @module VectorMonitor
@@ -57,7 +57,7 @@ end
 -- @return the scaling factor. Always 1, all scaling is even.
 function VectorMonitor:transformValue(input, value)
 	local type = input.Type
-	local offset = (input.Offset or Vector2.new(0, 0)))
+	local offset = (input.Offset or Vector2.new(0, 0))
 	if type == InputType.None or type == InputType.Keyboard or type == InputType.MouseButton or type == InputType.GamepadButton then
 		return ((value and Vector2.new(0, 1)) or Vector2.new(0, 0)) + offset, 1
 	elseif type == InputType.MouseMovement or type == InputType.GamepadDirection then
@@ -66,7 +66,7 @@ function VectorMonitor:transformValue(input, value)
 		else
 			return Vector2.new(value.X, value.Y) + offset, 1
 		end
-	elseif type = InputType.Scheme then
+	elseif type == InputType.Scheme then
 		local schemeValue = Vector2.new(0, 0)
 		for id, enum in pairs(Direction) do
 			local monitor = input.Code[id]

@@ -4,7 +4,7 @@
 -- the BinaryMonitor will be activated.
 --
 -- @author LastTalon
--- @version 0.1.0, 2020-04-09
+-- @version 0.1.1, 2020-10-01
 -- @since 0.1
 --
 -- @module BinaryMonitor
@@ -69,9 +69,8 @@ end
 -- The value is always returned as is.
 --
 -- @param value the value to be scaled
--- @param scale the scaling factor
 -- @return the original value with no scaling applied
-function BinaryMonitor:scaleValue(value, scale)
+function BinaryMonitor:scaleValue(value)
 	return value
 end
 
@@ -83,9 +82,7 @@ function BinaryMonitor:defaultValue()
 end
 
 --- Performs no processing.
---
--- @param entry the entry to process
-function BinaryMonitor:processEntry(entry)
+function BinaryMonitor:processEntry()
 end
 
 --- Does no cleaning.

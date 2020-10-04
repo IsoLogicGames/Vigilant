@@ -3,7 +3,7 @@
 -- thought of as a 1 dimensional vector.
 --
 -- @author LastTalon
--- @version 0.1.0, 2020-04-09
+-- @version 0.1.1, 2020-10-01
 -- @since 0.1
 --
 -- @module AxisMonitor
@@ -67,7 +67,7 @@ function AxisMonitor:transformValue(input, value)
 		else
 			return value.Y + offset, 1
 		end
-	elseif type = InputType.Scheme then
+	elseif type == InputType.Scheme then
 		local schemeValue = 0
 		for id, enum in pairs(Direction) do
 			local monitor = input.Code[id]

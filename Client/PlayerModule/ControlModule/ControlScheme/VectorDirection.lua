@@ -3,7 +3,7 @@
 -- and a ControlScheme to create a vector Input from two axis Inputs.
 --
 -- @author LastTalon
--- @version 0.1.0, 2020-04-16
+-- @version 0.1.1, 2020-10-01
 -- @since 0.1
 --
 -- @module VectorDirection
@@ -20,7 +20,7 @@ Console.log("Initializing constants...")
 --
 -- @field Vertical the vertical direction
 -- @field Horizontal the horizontal direction
-local Direciton = {
+local Direction = {
 	["Vertical"] = 1,
 	["Horizontal"] = 2
 }
