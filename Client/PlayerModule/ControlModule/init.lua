@@ -4,7 +4,11 @@
 -- corresponding events. Recieves input based on provided ControlSchemes.
 --
 -- @author LastTalon
+<<<<<<< HEAD:Main/Client/PlayerModule/ControlModule/init.lua
 -- @version 0.2.1, 2020-10-01
+=======
+-- @version 0.1.1, 2020-10-01
+>>>>>>> develop:Client/PlayerModule/ControlModule/init.lua
 -- @since 0.1
 --
 -- @module ControlModule
@@ -20,8 +24,12 @@ local Player = game:GetService("Players").LocalPlayer
 local SharedScripts = game:GetService("ReplicatedStorage"):WaitForChild(
 	"Scripts")
 
+<<<<<<< HEAD:Main/Client/PlayerModule/ControlModule/init.lua
 local SpawnMonitor = require(script:WaitForChild("Monitor"):WaitForChild(
 	"Spawn"))
+=======
+local SpawnMonitor = require(script:WaitForChild("Monitor"):WaitForChild("Spawn"))
+>>>>>>> develop:Client/PlayerModule/ControlModule/init.lua
 local Event = require(SharedScripts:WaitForChild("Event"))
 
 -- Constants --
@@ -39,18 +47,19 @@ end
 
 -- The default direction listener.
 local function onDirection(value)
-	
+	-- TODO: Add default direction listener.
 end
 
 -- The default camera listener.
 local function onCamera(value)
-	
+	-- TODO: Add default camera listener.
 end
 
 -- Variables --
 Console.log("Initializing variables...")
 
 local ControlModule = {}
+local instance
 
 -- Local Objects --
 Console.log("Constructing objects...")

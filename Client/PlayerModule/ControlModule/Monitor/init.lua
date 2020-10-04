@@ -4,7 +4,7 @@
 -- should not be instantiated directly.
 --
 -- @author LastTalon
--- @version 0.1.0, 2020-04-08
+-- @version 0.1.1, 2020-10-01
 -- @since 0.1
 --
 -- @module Monitor
@@ -116,7 +116,7 @@ function Monitor:Update()
 				valid = false
 			end
 		elseif input.Type == InputType.Scheme then
-			inputValue == input.Code
+			inputValue = input.Code
 		else
 			Console.error("Input has invalid type.")
 			valid = false
@@ -177,7 +177,7 @@ end
 -- @param value the value being transformed
 -- @return the transformed value
 -- @return the scaling factor
-function Monitor:transformValue(input, value)
+function Monitor:transformValue()
 	Console.warn("updateInput must be overridden and should not be called from Monitor.")
 end
 
@@ -190,7 +190,7 @@ end
 -- @param lhs the left hand side operand of the add operation
 -- @param rhs the right hand side operand of the add operation
 -- @return the added value
-function Monitor:addValue(lhs, rhs)
+function Monitor:addValue()
 	Console.warn("addValue must be overridden and should not be called from Monitor.")
 end
 
@@ -204,7 +204,7 @@ end
 -- @param value the value to be scaled
 -- @param scale the scaling factor
 -- @return the scaled value
-function Monitor:scaleValue(value, scale)
+function Monitor:scaleValue()
 	Console.warn("scaleValue must be overridden and should not be called from Monitor.")
 end
 
@@ -222,7 +222,7 @@ end
 -- Type, Code, Offset, and, Devices, from its associated Input.
 --
 -- @param entry the entry to process
-function Monitor:processEntry(entry)
+function Monitor:processEntry()
 	Console.warn("processEntry must be overridden and should not be called from Monitor.")
 end
 
