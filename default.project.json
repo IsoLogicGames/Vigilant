@@ -5,6 +5,7 @@
 		"StarterPlayer": {
 			"$className": "StarterPlayer",
 			"StarterPlayerScripts": {
+				"$className": "StarterPlayerScripts",
 				"$path": "Client"
 			}
 		},
@@ -15,6 +16,7 @@
 			}
 		},
 		"ServerScriptService": {
+			"$className": "ServerScriptService",
 			"$path": "Server"
 		},
 		"ReplicatedStorage": {
