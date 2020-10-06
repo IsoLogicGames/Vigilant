@@ -22,4 +22,4 @@ Contributions are welcome, please make a pull request!
 Be sure to set up Rojo to get started. Check out our [contribution guide](CONTRIBUTING.md) for further information.
 
 ## License
-Vigilant is free software available under the zlib license. See the [license](LICENSE.md) for details.
+Vigilant is free software available under the MIT license. See the [license](LICENSE.md) for details.
