@@ -19,7 +19,7 @@ The only documentation is currently in the source. This will be changing soon.
 ## Contributing
 Contributions are welcome, please make a pull request!
 
-Be sure to set up Rojo to get started. Check out our [contribution guide](CONTRIBUTING.md) for further information.
+Be sure to set up Rojo to get started. Typically make pull requests against the `develop` branch. Check out our [contribution guide](CONTRIBUTING.md) for further information.
 
 ## License
 Vigilant is free software available under the MIT license. See the [license](LICENSE.md) for details.
