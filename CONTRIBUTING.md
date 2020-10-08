@@ -57,17 +57,17 @@ If you're contributing please follow our style guide. It maintains the quality o
 
 ### Lua
  * Use spaces around operators
-   * `a + b` rather than `a+b`
+     * `a + b` rather than `a+b`
  * Use spaces after commas (newlines are fine, too)
-   * `{1, 2, 3}` rather than `{1,2,3}`
+     * `{1, 2, 3}` rather than `{1,2,3}`
  * Avoid spaces inside brackets (parentheses, square brackets, curly braces, etc.)
-   * `(a + b)` rather than `( a + b )`
-	 * `function(a, b)` rather than `function( a, b )`
-	 * `a[b]` rather than `a[ b ]`
+     * `(a + b)` rather than `( a + b )`
+	   * `function(a, b)` rather than `function( a, b )`
+  	 * `a[b]` rather than `a[ b ]`
  * Avoid spaces between names or the function keyword and associated brackets (such as when calling functions, or indexing tables)
-   * `function a(b)` rather than `function a (b)`
-	 * `function(a)` rather than `function (a)`
-	 * `a[b]` rather than `a [b]`
+     * `function a(b)` rather than `function a (b)`
+	   * `function(a)` rather than `function (a)`
+	   * `a[b]` rather than `a [b]`
  * Include a blank line between functions
  * Use parentheses to improve clarity
  * Indent using tabs
@@ -75,8 +75,8 @@ If you're contributing please follow our style guide. It maintains the quality o
  * Begin names with a capital letter for names that are intended to be global or public
  * Begin names with a lower case letter for names that are intended to be local or private
  * Capitalize initialisms and acronyms except when it is the first word of a name that would start with a lower case letter
-   * `getID` rather than `getId`
-	 * `jsonString` rather than `JSONString`
+     * `getID` rather than `getId`
+	   * `jsonString` rather than `JSONString`
  * Keep your code oderly ([Boilerplate.lua](Boilerplate.lua) can help with this, especially for new files)
  * Document your changes
 
@@ -100,13 +100,13 @@ Releases for Vigilant made by a maintainer using a release branch and a pull req
 ### Versioning
 Vigilant uses [semantic versioning](https://semver.org/).
  * Version tags should be prepended with a `v`
-   * `v0.5.12`
+     * `v0.5.12`
  * The major version should increment when changes break backward compatibility
-   * `v0.5.12` -> `v1.0.0`
+     * `v0.5.12` -> `v1.0.0`
  * The minor version should increment when features are added
-   * `v0.5.12` -> `v0.6.0`
+     * `v0.5.12` -> `v0.6.0`
  * The patch version should increment when only bug fixes are added
-   * `v0.5.12` -> `v0.5.13`
+     * `v0.5.12` -> `v0.5.13`
  * A pre-release version may be included by appending a hyphen followed by dot-separated identifiers
-   * `v0.5.12` -> `v0.6.0-alpha.1`
-	 * `v0.5.12` -> `v1.0.0-rc.1`
+     * `v0.5.12` -> `v0.6.0-alpha.1`
+	   * `v0.5.12` -> `v1.0.0-rc.1`
