@@ -76,9 +76,10 @@ If you're contributing, please follow our style guide. It maintains the quality 
 * Include a blank line between functions
 * Use parentheses to improve clarity
 * Indent using tabs, align using spaces
-* Use camel case for all names, except where doing so would be prohibitive or confusing
-* Begin names with a capital letter for names that are intended to be global or public
-* Begin names with a lower case letter for names that are intended to be local or private
+* Use camel case (either pascal case and dromedary case) for all names, except where doing so would be prohibitive or confusing
+* Avoid undserscores, snake case, and upper case for all names
+* Begin names with a capital letter (pascal case) for names that are intended to be global or public
+* Begin names with a lower case letter (dromedary case) for names that are intended to be local or private
 * Capitalize initialisms and acronyms, except when they are the first word of a name that would start with a lower case letter
 	* `getID` rather than `getId`
 	* `jsonString` rather than `JSONString`
