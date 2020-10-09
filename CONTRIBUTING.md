@@ -3,6 +3,9 @@ Contributions to Vigilant are always welcome!
 
 We welcome bug reports, suggestions, and code contributions. We want Vigilant to be a game everyone enjoys and feels they can be a part of.
 
+## Code of Conduct
+Vigilant and those participating in any of its spaces are governed by its [code of conduct](CODE_OF_CONDUCT.md). By participating you are also expected to uphold this code. Report any unacceptable behavior to [last_talon@new.rr.com](mailto:last_talon@new.rr.com).
+
 ## Reporting Bugs
 If you found a bug, please let us know about it by submitting a GitHub [issue](https://github.com/LastTalon/Vigilant/issues).
 
