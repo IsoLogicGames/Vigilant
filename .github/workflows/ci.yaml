@@ -29,7 +29,7 @@ jobs:
 
     - uses: leafo/gh-actions-luarocks@v2
 
-    - name: Install Lua Dependencies
+    - name: Install Dependencies
       run: |
         luarocks install luacov
         luarocks install luacov-coveralls
@@ -54,9 +54,27 @@ jobs:
       with:
         submodules: true
 
+    - uses: actions/checkout@v2
+      with:
+        repository: OrbitalOwen/roblox-win-installer
+        path: roblox-win-installer
+        submodules: true
+
     - uses: Roblox/setup-foreman@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
+
+    - uses: actions/setup-python@v2
+
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r roblox-win-installer/requirements.txt
+
+    - name: Install Roblox
+      run: python ./roblox-win-installer/install.py $env:ROBLOSECURITY
+      env:
+        ROBLOSECURITY: ${{ secrets.ROBLOSECURITY }}
 
     - name: Build
       run: rojo build -o build.rbxlx
