@@ -9,6 +9,7 @@
 		<img src="https://coveralls.io/repos/github/LastTalon/Vigilant/badge.svg?branch=HEAD" alt="Coverage Status">
 	</a>
 </div>
+<br>
 
 **Vigilant** is a free software *Roblox* game. It combines the gameplay features of MOBA and RTS games like *Dota 2*, or *Warcraft III* with the character mechanics of hero/class shooters such as *Overwatch* and *Team Fortress 2* along with twin stick style controls similar to games like *Alien Swarm*, *HELLDIVERS*, or *Magicka*. This creates a unique gameplay experience where players cooperate using their heroes' unique abilities to survive against relentless hordes of enemies.
 
