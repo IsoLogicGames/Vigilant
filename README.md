@@ -5,8 +5,8 @@
 	<a href="https://github.com/LastTalon/Vigilant/actions">
 		<img src="https://github.com/LastTalon/Vigilant/workflows/CI/badge.svg" alt="CI Status">
 	</a>
-	<a href="https://coveralls.io/github/LastTalon/Vigilant?branch=HEAD">
-		<img src="https://coveralls.io/repos/github/LastTalon/Vigilant/badge.svg?branch=HEAD" alt="Coverage Status">
+	<a href="https://coveralls.io/github/LastTalon/Vigilant?branch=master">
+		<img src="https://coveralls.io/repos/github/LastTalon/Vigilant/badge.svg?branch=master" alt="Coverage Status">
 	</a>
 </div>
 <br>
