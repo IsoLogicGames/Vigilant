@@ -82,4 +82,4 @@ jobs:
       run: rojo build -o build.rbxlx
 
     - name: Run Tests
-      run: run-in-roblox --place build.rbxlx --script Tests/Run.server.lua
+      run: run-in-roblox --place ./build.rbxlx --script ./Tests/Run.server.lua
