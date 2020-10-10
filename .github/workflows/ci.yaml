@@ -72,7 +72,9 @@ jobs:
         pip install -r roblox-win-installer/requirements.txt
 
     - name: Install Roblox
-      run: python roblox-win-installer/install.py $env:ROBLOSECURITY
+      run: |
+        cd roblox-win-installer
+        python install.py $env:ROBLOSECURITY
       env:
         ROBLOSECURITY: ${{ secrets.ROBLOSECURITY }}
 
