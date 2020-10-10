@@ -10,8 +10,6 @@
 	</a>
 </div>
 
-![CI](https://github.com/LastTalon/Vigilant/workflows/CI/badge.svg)
-
 **Vigilant** is a free software *Roblox* game. It combines the gameplay features of MOBA and RTS games like *Dota 2*, or *Warcraft III* with the character mechanics of hero/class shooters such as *Overwatch* and *Team Fortress 2* along with twin stick style controls similar to games like *Alien Swarm*, *HELLDIVERS*, or *Magicka*. This creates a unique gameplay experience where players cooperate using their heroes' unique abilities to survive against relentless hordes of enemies.
 
 Vigilant is a free to play cooperative game on Roblox designed to feel wholly unique among other games of the platform. It builds systems from the ground up to provide a striking experience that feels different than 'just another Roblox game'. It achieves this through custom frameworks for controls, asset definition, replication, particle systems, game events/effects, and more. Overall, it aims to push the bar of what a Roblox game is percieved to be.
