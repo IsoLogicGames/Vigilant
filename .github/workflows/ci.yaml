@@ -1,0 +1,63 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+    - master
+    - develop
+
+jobs:
+  lemur:
+    name: Lemur Testing
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        submodules: true
+    
+    - uses: actions/checkout@v2
+      with:
+        repository: LPGhatguy/lemur
+        ref: "v0.1.0"
+        path: lemur
+        submodules: true
+    
+    - uses: leafo/gh-actions-lua@v6
+      with:
+        luaVersion: "5.1"
+    
+    - uses: leafo/gh-actions-luarocks@v2
+    
+    - name: Install Lua Dependencies
+      run: |
+        luarocks install luacov
+        luarocks install luacov-coveralls
+        luarocks install luafilesystem
+        luarocks install dkjson
+        luarocks install luasocket
+        luarocks install bit32
+    
+    - name: Run Tests
+      run: lua -lluacov Tests/Lemur.server.lua
+    
+    - name: Report Coverage
+      run: luacov-coveralls
+  
+  roblox:
+    name: Roblox Testing
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        submodules: true
+    
+    - uses: Roblox/setup-foreman@v1
+      with: 
+        token: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Build
+      run: rojo build -o build.rbxlx
+    
+    - name: Run Tests
+      run: run-in-roblox --place build.rbxlx --script Tests/Run.server.lua
