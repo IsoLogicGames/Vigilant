@@ -45,3 +45,42 @@ jobs:
       run: luacov-coveralls --repo-token $COVERALLS_REPO_TOKEN --service-name github
       env:
         COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  roblox:
+    name: Roblox Testing
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        submodules: true
+
+    - uses: actions/checkout@v2
+      with:
+        repository: OrbitalOwen/roblox-win-installer
+        path: roblox-win-installer
+        submodules: true
+
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r roblox-win-installer/requirements.txt
+
+    - name: Install Roblox
+      run: |
+        cd roblox-win-installer
+        python install.py $env:ROBLOSECURITY
+      env:
+        ROBLOSECURITY: ${{ secrets.ROBLOSECURITY }}
+
+    - uses: Roblox/setup-foreman@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Install Foremand
+      run: foreman install
+
+    - name: Build
+      run: rojo build -o build.rbxlx
+
+    - name: Run Tests
+      run: run-in-roblox --place build.rbxlx --script Tests/Run.server.lua
