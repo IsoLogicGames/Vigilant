@@ -76,9 +76,6 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Install Foremand
-      run: foreman install
-
     - name: Build
       run: rojo build -o build.rbxlx
 
