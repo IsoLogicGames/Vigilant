@@ -8,7 +8,7 @@ assignees: ''
 ---
 
 ## Description
-A clear and concise description of what the bug is. Be sure this isn't a duplicate report (if it is contribute to the already opened bug report).
+A clear and concise description of what the bug is. Be sure this isn't a [duplicate report](https://github.com/LastTalon/Vigilant/issues) (if it is contribute to the already opened bug report).
 
 ## Steps to reproduce
 Steps to reproduce the behavior:
