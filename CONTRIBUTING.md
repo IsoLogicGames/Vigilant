@@ -19,7 +19,7 @@ Be sure to:
 
 ### Did you write a patch that fixes a bug?
 Thank you!
-* Open a pull request against the `develop` branch
+* Open a pull request against the `master` branch
 * Clearly describe the problem and solution in the pull request
 * Include any relevant [issue](https://github.com/LastTalon/Vigilant/issues) number
 * Be sure to check our [style guide](#style-guide)
@@ -29,7 +29,7 @@ Great!
 * Create an [issue](https://github.com/LastTalon/Vigilant/issues) suggesting the feature. We love when people contribute, but we hate for their effort to be wasted. Discussing the issue ahead of time can ensure the code you write will be accpeted.
 * Tag the issue appropriately
 * Fork the project, check our [style guide](#style-guide), and start writing
-* Consider opening a draft pull request against `develop` right away. This is the best way to discuss the code as you write it.
+* Consider opening a draft pull request against `master` right away. This is the best way to discuss the code as you write it.
 * When you're done be sure to open a pull request. Include the issue number for the associated issue.
 
 ### Did you already write a new feature or change an existing one?
@@ -43,11 +43,6 @@ We'd love to see it! We're happy you want to contribute, but please be patient a
 
 ### Did you fix something purely cosmetic?
 We appreciate your enthusiasm, however cosmetic patches are unlikely to be approved. We do care about code quality (please check our [style guide](#style-guide)), but the cost of reviewing it outweighs the benefit of the change.
-
-### About Pull Requests
-If you're contributing code, a pull request should typically be made against the unstable `develop` branch. Pull requests against the stable `master` branch should generally only be made by maintainers and are reserved for releases and urgent patches.
-
-Pull requests against the `develop` branch are squashed to create a clean history, while pull requests against the `master` branch are rebased to maintain the linear history.
 
 ## Style Guide
 If you're contributing, please follow our style guide. It maintains the quality of our code and helps us work together.
@@ -93,10 +88,10 @@ Documentation changes can be submitted the same as any [code change](#submitting
 
 ## Releases
 Releases for Vigilant are made by a maintainer using a release branch and a pull request.
-1. Create a new branch from `develop`
+1. Create a new release branch
 2. Update [`CHANGELOG.md`](CHANGELOG.md)
 3. Create a pull request against `master`
-4. Review before release to keep `master` stable
+4. Review to ensure a stable release
 5. Make any necessary changes (be sure to keep [`CHANGELOG.md`](CHANGELOG.md) accurate)
 6. Rebase and merge the pull request
 7. Tag according to [versioning](#Versioning) guidelines

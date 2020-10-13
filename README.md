@@ -26,7 +26,7 @@ The only documentation is currently in the source. This will be changing soon.
 ## Contributing
 Contributions are welcome, please make a pull request!
 
-Be sure to set up [Rojo](https://rojo.space/) to get started. Typically make pull requests against the `develop` branch. Check out our [contribution guide](CONTRIBUTING.md) for further information.
+Be sure to set up [Rojo](https://rojo.space/) to get started. Check out our [contribution guide](CONTRIBUTING.md) for further information.
 
 Please read our [code of conduct](CODE_OF_CONDUCT.md) when getting involved.
 
