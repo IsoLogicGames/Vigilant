@@ -30,7 +30,7 @@ Great!
 * Tag the issue appropriately
 * Fork the project, check our [style guide](#style-guide), and start writing
 * Consider opening a draft pull request against `master` right away. This is the best way to discuss the code as you write it.
-* When you're done be sure to open a pull request. Include the issue number for the associated issue.
+* When you're done, be sure to open a pull request. Include the issue number for the associated issue.
 
 ### Did you already write a new feature or change an existing one?
 We'd love to see it! We're happy you want to contribute, but please be patient and understanding with us.
