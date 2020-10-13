@@ -25,7 +25,10 @@
 				"$path": "Shared"
 			},
 			"Tests": {
-				"$path": "Tests"
+				"$path": "Tests",
+				"TestEZ": {
+					"$path": "Modules/TestEZ/src"
+				}
 			}
 		}
 	}
