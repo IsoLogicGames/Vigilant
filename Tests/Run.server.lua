@@ -12,7 +12,7 @@
 print("Loading dependencies...")
 
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local Tests = require(ReplicatedStorage:WaitForChild("Tests"))
+local Tests = require(ReplicatedStorage:WaitForChild("Tests"):WaitForChild("Tests"))
 
 -- Constants --
 print("Initializing constants...")
