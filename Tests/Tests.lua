@@ -15,7 +15,7 @@
 print("Loading dependencies...")
 
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local TestEZ = require(ReplicatedStorage:WaitForChild("TestEZ"))
+local TestEZ = require(ReplicatedStorage:WaitForChild("Tests"):WaitForChild("TestEZ"))
 
 -- Functions --
 print("Constructing functions...")
