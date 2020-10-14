@@ -9,19 +9,19 @@
 -- @throws when the tests fail
 
 -- Dependencies --
-print("Loading dependencies...")
+print("Runner: Loading dependencies...")
 
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Tests = require(ReplicatedStorage:WaitForChild("Tests"):WaitForChild("Tests"))
 
 -- Constants --
-print("Initializing constants...")
+print("Runner: Initializing constants...")
 
 --- The locations containing tests.
 local Roots = {ReplicatedStorage.Tests}
 
 -- Main --
-print("Running...")
+print("Runner: Running...")
 
 local completed, result = Tests(Roots)
 
@@ -34,4 +34,4 @@ else
 end
 
 -- End --
-print("Done.")
+print("Runner: Done.")

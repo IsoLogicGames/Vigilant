@@ -12,13 +12,13 @@
 -- @see TestEZ
 
 -- Dependencies --
-print("Loading dependencies...")
+print("Tests: Loading dependencies...")
 
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local TestEZ = require(ReplicatedStorage:WaitForChild("Tests"):WaitForChild("TestEZ"))
 
 -- Functions --
-print("Constructing functions...")
+print("Tests: Constructing functions...")
 
 --- The testing function.
 -- Accepts a list of roots, runs tests on them, then reports on test status.
@@ -35,6 +35,6 @@ local function Tests(roots)
 end
 
 -- End --
-print("Done.")
+print("Tests: Done.")
 
 return Tests
