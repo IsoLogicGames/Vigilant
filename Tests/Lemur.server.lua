@@ -16,8 +16,6 @@ package.path = package.path .. ";?/init.lua"
 
 local Lemur = require("lemur")
 local Habitat = Lemur.Habitat.new()
-local ReplicatedStorage = Habitat.game:GetService("ReplicatedStorage")
-local Tests = Habitat:require(ReplicatedStorage:WaitForChild("Tests"):WaitForChild("Tests"))
 
 -- Constants --
 print("LemurRunner: Initializing constants...")
@@ -31,9 +29,6 @@ local Source = { -- This can potentially be loaded from a project.json
 	["Tests"] = "ReplicatedStorage.Tests",
 	["TestEZ"] = "ReplicatedStorage.Tests.TestEZ"
 }
-
---- The locations containing tests.
-local Roots = {ReplicatedStorage.Tests}
 
 -- Functions --
 print("LemurRunner: Constructing functions...")
@@ -84,6 +79,11 @@ for fsPath, habitatPath in pairs(Source) do
 		source.Parent = container
 	end
 end
+
+-- Load variables dependent on the build
+local ReplicatedStorage = Habitat.game:GetService("ReplicatedStorage")
+local Tests = Habitat:require(ReplicatedStorage:WaitForChild("Tests"):WaitForChild("Tests"))
+local Roots = {ReplicatedStorage.Tests}
 
 -- Run tests and set up exit status
 local completed, result = Tests(Roots)
