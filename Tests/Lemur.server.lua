@@ -11,6 +11,9 @@
 -- Dependencies --
 print("LemurRunner: Loading dependencies...")
 
+-- Add init.lua to path allowing Lemur (and other dependencies to load)
+package.path = package.path .. ";?/init.lua"
+
 local Lemur = require("lemur")
 local Habitat = Lemur.Habitat.new()
 local ReplicatedStorage = Habitat.game:GetService("ReplicatedStorage")
