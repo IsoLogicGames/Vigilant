@@ -19,7 +19,7 @@ jobs:
     - uses: actions/checkout@v2
       with:
         repository: LPGhatguy/lemur
-        ref: "v0.1.0"
+        ref: "master"
         path: lemur
         submodules: true
 
