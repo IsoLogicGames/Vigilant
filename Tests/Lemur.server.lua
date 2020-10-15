@@ -27,7 +27,7 @@ local Source = { -- This can potentially be loaded from a project.json
 	["Server"] = "ServerScriptService",
 	["Shared"] = "ReplicatedStorage.Scripts",
 	["Tests"] = "ReplicatedStorage.Tests",
-	["Modules/TestEZ"] = "ReplicatedStorage.Tests.TestEZ"
+	["Modules/TestEZ/src"] = "ReplicatedStorage.Tests.TestEZ"
 }
 
 -- Functions --
