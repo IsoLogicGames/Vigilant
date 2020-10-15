@@ -70,7 +70,7 @@ for fsPath, habitatPath in pairs(Source) do
 
 	-- If the final container exists place everything inside.
 	if containerExists then
-		for _, object in source:GetChildren() do
+		for _, object in ipairs(source:GetChildren()) do
 			object.Parent = container
 		end
 		source:Destroy()
