@@ -28,10 +28,13 @@ print("Tests: Constructing functions...")
 -- @return true if the tests were successful, false if the tests were
 -- unsuccessful, an error message if the tests were not completed
 local function Tests(roots)
-	return xpcall(function()
+	print()
+	local result xpcall(function()
 		local results = TestEZ.TestBootstrap:run(roots)
 		return results.failureCount == 0
 	end, debug.traceback)
+	print()
+	return result
 end
 
 -- End --
