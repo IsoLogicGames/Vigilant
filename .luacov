@@ -1,0 +1,11 @@
+return {
+	include = {
+		"^Client",
+		"^Loading",
+		"^Server",
+		"^Shared",
+	},
+	exclude = {
+		"%.spec$"
+	},
+}

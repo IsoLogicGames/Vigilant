@@ -23,6 +23,12 @@
 			"$className": "ReplicatedStorage",
 			"Scripts": {
 				"$path": "Shared"
+			},
+			"Tests": {
+				"$path": "Tests",
+				"TestEZ": {
+					"$path": "Modules/TestEZ/src"
+				}
 			}
 		}
 	}

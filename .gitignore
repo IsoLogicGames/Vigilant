@@ -3,3 +3,8 @@
 *.rbxlx
 *.rbxm
 *.rbxmx
+*.rbxl.lock
+*.rbxlx.lock
+
+# LuaCov files
+/luacov.*
