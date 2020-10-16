@@ -22,12 +22,12 @@ print("LemurRunner: Initializing constants...")
 
 --- The source locations to load in lemur
 local Source = { -- This can potentially be loaded from a project.json
-	["Client"] = "StarterPlayer.StarterPlayerScripts",
-	["Loading"] = "ReplicatedFirst.Scripts",
-	["Server"] = "ServerScriptService",
-	["Shared"] = "ReplicatedStorage.Scripts",
-	["Tests"] = "ReplicatedStorage.Tests",
-	["Modules/TestEZ/src"] = "ReplicatedStorage.Tests.TestEZ"
+	{"Client", "StarterPlayer.StarterPlayerScripts"},
+	{"Loading", "ReplicatedFirst.Scripts"},
+	{"Server", "ServerScriptService"},
+	{"Shared", "ReplicatedStorage.Scripts"},
+	{"Tests", "ReplicatedStorage.Tests"},
+	{"Modules/TestEZ/src", "ReplicatedStorage.Tests.TestEZ"}
 }
 
 -- Functions --
@@ -48,9 +48,9 @@ end
 print("LemurRunner: Running...")
 
 -- Build the project in Lemur
-for fsPath, habitatPath in pairs(Source) do
-	local source = Habitat:loadFromFs(fsPath)
-	local tokens = tokenizePath(habitatPath)
+for _, pair in ipairs(Source) do
+	local source = Habitat:loadFromFs(pair[1])
+	local tokens = tokenizePath(pair[2])
 	local container = Habitat.game:GetService(tokens[1])
 	local containerExists = false
 
