@@ -12,24 +12,28 @@ jobs:
     name: Lemur Testing
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout Project
+      uses: actions/checkout@v2
       with:
         submodules: true
 
-    - uses: actions/checkout@v2
+    - name: Download Lemur
+      uses: actions/checkout@v2
       with:
         repository: LPGhatguy/lemur
         ref: "master"
         path: lemur
         submodules: true
 
-    - uses: leafo/gh-actions-lua@v6
+    - name: Install Lua
+      uses: leafo/gh-actions-lua@v6
       with:
         luaVersion: "5.1"
 
-    - uses: leafo/gh-actions-luarocks@v2
+    - name: Install LuaRocks
+      uses: leafo/gh-actions-luarocks@v2
 
-    - name: Install Dependencies
+    - name: Install Lua Dependencies
       run: |
         luarocks install luacov
         luarocks install luacov-reporter-lcov
@@ -53,21 +57,24 @@ jobs:
     name: Roblox Testing
     runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout Project
+      uses: actions/checkout@v2
       with:
         submodules: true
 
-    - uses: actions/checkout@v2
+    - name: Download Roblox Installer
+      uses: actions/checkout@v2
       with:
         repository: OrbitalOwen/roblox-win-installer
         path: roblox-win-installer
         submodules: true
 
-    - uses: Roblox/setup-foreman@v1
+    - name: Install Foreman
+      uses: Roblox/setup-foreman@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Install Dependencies
+    - name: Install Python Dependencies
       run: |
         python -m pip install --upgrade pip
         pip install -r roblox-win-installer/requirements.txt
