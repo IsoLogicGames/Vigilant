@@ -50,6 +50,10 @@ function Controller:Unbind()
 	Console.warn("Unbind must be overridden and should not be called from Controller.")
 end
 
+function Controller:Bound()
+	return self.dispatcher ~= nil
+end
+
 -- End --
 Console.log("Done.")
 
