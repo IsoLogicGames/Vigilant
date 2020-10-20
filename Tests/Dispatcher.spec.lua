@@ -19,12 +19,16 @@ return function()
 
 		it("should be able to be bound and unbound", function()
 			local dispatcher = Dispatcher.new()
+			local connection = Connection.new()
+			connection.Receive = {}
+			connection.Receive.Connect = function() return 0 end
+			connection.Receive.Disconnect = function() end
 			expect(dispatcher:Bound()).to.equal(false)
-			dispatcher:Bind(Connection.new())
+			dispatcher:Bind(connection)
 			expect(dispatcher:Bound()).to.equal(true)
 			dispatcher:Unbind()
 			expect(dispatcher:Bound()).to.equal(false)
-			dispatcher = Dispatcher.new(Connection.new())
+			dispatcher = Dispatcher.new(connection)
 			expect(dispatcher:Bound()).to.equal(true)
 			dispatcher:Unbind()
 			expect(dispatcher:Bound()).to.equal(false)
@@ -32,7 +36,11 @@ return function()
 
 		it("should return the status of binding when being bound", function()
 			local dispatcher = Dispatcher.new()
-			local bound = dispatcher:Bind(Connection.new())
+			local connection = Connection.new()
+			connection.Receive = {}
+			connection.Receive.Connect = function() return 0 end
+			connection.Receive.Disconnect = function() end
+			local bound = dispatcher:Bind(connection)
 			expect(bound).to.equal(dispatcher:Bound())
 			dispatcher:Unbind()
 		end)
@@ -105,6 +113,9 @@ return function()
 			local expectedReports = {1, 2, 3}
 			local reports = {}
 			command.Name = "Test"
+			connection.Receive = {}
+			connection.Receive.Connect = function() return 0 end
+			connection.Receive.Disconnect = function() end
 
 			function connection:Report(command, arguments)
 				if command == command.Name then
@@ -132,6 +143,9 @@ return function()
 			local expectedMessages = {1, 2, 3}
 			local messages = {}
 			command.Name = "Test"
+			connection.Receive = {}
+			connection.Receive.Connect = function() return 0 end
+			connection.Receive.Disconnect = function() end
 
 			function connection.Receive:Connect(fn)
 				for _, message in ipairs(expectedMessages) do
