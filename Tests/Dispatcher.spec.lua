@@ -117,8 +117,8 @@ return function()
 			connection.Receive.Connect = function() return 0 end
 			connection.Receive.Disconnect = function() end
 
-			function connection:Report(command, arguments)
-				if command == command.Name then
+			function connection:Report(commandName, arguments)
+				if commandName == command.Name then
 					table.insert(reports, arguments)
 				end
 			end
@@ -136,7 +136,7 @@ return function()
 			dispatcher:Unbind()
 		end)
 
-		it("should recieve reports from its Connection", function()
+		it("should receive reports from its Connection", function()
 			local dispatcher = Dispatcher.new()
 			local connection = Connection.new()
 			local command = Command.new()
@@ -154,8 +154,8 @@ return function()
 				return 0
 			end
 
-			function command:Listener(command, arguments, internal)
-				if command == self.Name and not internal then
+			function command:Listener(commandName, arguments, internal)
+				if commandName == self.Name and not internal then
 					table.insert(messages, arguments)
 				end
 			end
