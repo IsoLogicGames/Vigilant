@@ -93,8 +93,8 @@ return function()
 				return expectedActivations
 			end
 
-			function command:Listener(command, arguments, internal)
-				if command == self.Name and internal then
+			function command:Listener(commandName, arguments, internal)
+				if commandName == self.Name and internal then
 					table.insert(activations, arguments)
 				end
 			end
@@ -112,10 +112,11 @@ return function()
 			local command = Command.new()
 			local expectedReports = {1, 2, 3}
 			local reports = {}
-			command.Name = "Test"
 			connection.Receive = {}
 			connection.Receive.Connect = function() return 0 end
 			connection.Receive.Disconnect = function() end
+			command.Name = "Test"
+			command.Listener = function() end
 
 			function connection:Report(commandName, arguments)
 				if commandName == command.Name then
@@ -142,10 +143,10 @@ return function()
 			local command = Command.new()
 			local expectedMessages = {1, 2, 3}
 			local messages = {}
-			command.Name = "Test"
 			connection.Receive = {}
-			connection.Receive.Connect = function() return 0 end
 			connection.Receive.Disconnect = function() end
+			command.Name = "Test"
+			command.Update = function() return {} end
 
 			function connection.Receive:Connect(fn)
 				for _, message in ipairs(expectedMessages) do
