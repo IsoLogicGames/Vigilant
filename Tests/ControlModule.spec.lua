@@ -6,9 +6,10 @@
 
 return function()
 	local module = game:GetService("StarterPlayer"):WaitForChild("StarterPlayerScripts"):WaitForChild("PlayerModule"):WaitForChild("ControlModule")
+	local controlSchemeModule = module:WaitForChild("ControlScheme")
 	local ControlModule = require(module)
-	local ControlScheme = require(module:WaitForChild("ControlScheme"))
-	local Monitor = require(module:WaitForChild("Monitor"))
+	local ControlScheme = require(controlSchemeModule)
+	local Monitor = require(controlSchemeModule:WaitForChild("Monitor"))
 
 	describe("ControlModule", function()
 		it("should be able to be instantiated", function()
