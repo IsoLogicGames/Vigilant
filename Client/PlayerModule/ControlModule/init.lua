@@ -18,7 +18,7 @@ local RunService = game:GetService("RunService")
 local Player = game:GetService("Players").LocalPlayer
 local SharedScripts = game:GetService("ReplicatedStorage"):WaitForChild("Scripts")
 
-local SpawnMonitor = require(script:WaitForChild("Monitor"):WaitForChild("Spawn"))
+local SpawnMonitor = require(script:WaitForChild("ControlScheme"):WaitForChild("Monitor"):WaitForChild("Spawn"))
 local Event = require(SharedScripts:WaitForChild("Event"))
 
 -- Constants --
@@ -160,7 +160,7 @@ function ControlModule:BindControls()
 				self.monitors[command] = monitor
 			end
 		end
-		
+
 		-- The control step that is added to the render step.
 		local function onControlStep()
 			for command, monitor in pairs(self.monitors) do
@@ -169,7 +169,7 @@ function ControlModule:BindControls()
 				end
 			end
 		end
-		
+
 		RunService:BindToRenderStep(RenderStepName, Enum.RenderPriority.Input.Value, onControlStep)
 		self.controlsBound = true
 	end
@@ -179,11 +179,11 @@ end
 function ControlModule:UnbindControls()
 	if self.controlsBound then
 		RunService:UnbindFromRenderStep(RenderStepName)
-		
+
 		for _, monitor in pairs(self.monitors) do
 			monitor:UnbindControl()
 		end
-		
+
 		self.monitors = {}
 		self.controlsBound = false
 	end

@@ -22,7 +22,7 @@ local Console = require(game:GetService("ReplicatedStorage"):WaitForChild("Scrip
 -- Dependencies --
 Console.log("Loading dependencies...")
 
-local Input = require(script:WaitForChild("Input"))
+local Input = require(script.Parent:WaitForChild("Input"))
 
 -- Variables --
 Console.log("Initializing variables...")
