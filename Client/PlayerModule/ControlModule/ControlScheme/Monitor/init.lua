@@ -64,6 +64,14 @@ function Monitor:GetValue()
 	return self.value
 end
 
+--- Tells if this Monitor's value has changed.
+-- This will be true if the value of the input changed during the last update.
+--
+-- @return true if updated, false otherwise
+function Monitor:Updated()
+	return self.updated
+end
+
 --- Updates the value of this Monitor.
 -- Gathers all Inputs and updates the value of this Monitor's input based on
 -- the scaling of this Monitor. This method should not typically be called
