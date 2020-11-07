@@ -70,6 +70,14 @@ function ControlScheme:Remove(id)
 	self.ControlSet[id] = nil
 end
 
+--- The iterator for this ControlScheme
+-- Iterates over all Controls in this ControlScheme.
+--
+-- @return the iterator
+function ControlScheme:Controls()
+	return pairs(self.ControlSet)
+end
+
 -- End --
 Console.log("Done.")
 

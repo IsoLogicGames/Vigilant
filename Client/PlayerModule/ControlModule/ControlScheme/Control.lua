@@ -80,6 +80,14 @@ function Control:Remove(id)
 	self.Inputs[id] = nil
 end
 
+--- The iterator for this Control
+-- Iterates over all Inputs in this Control.
+--
+-- @return the iterator
+function Control:Inputs()
+	return pairs(self.Inputs)
+end
+
 -- End --
 Console.log("Done.")
 
