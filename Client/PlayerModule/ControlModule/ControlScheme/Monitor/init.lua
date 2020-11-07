@@ -47,8 +47,6 @@ Monitor.__index = Monitor
 -- @return the new Monitor
 function Monitor.new()
 	local self = setmetatable({}, Monitor)
-	self.bound = false
-	self.inputs = {}
 	return self
 end
 
@@ -56,7 +54,7 @@ end
 --
 -- @return true if bound, false otherwise
 function Monitor:Bound()
-	return self.bound
+	return self.control ~= nil
 end
 
 --- Gets this Monitor's value.
@@ -83,7 +81,7 @@ function Monitor:Update()
 		local inputValue
 		local inputScale
 		local valid = true
-		
+
 		-- Get specific input
 		if input.Type == InputType.None then
 			inputValue = false
@@ -121,19 +119,19 @@ function Monitor:Update()
 			Console.error("Input has invalid type.")
 			valid = false
 		end
-		
+
 		if valid then
 			inputValue, inputScale = self:transformValue(input, inputValue)
 			value = self:addValue(value, inputValue)
 			scale = scale + inputScale
 		end
 	end
-	
+
 	self.value = self:scaleValue(value, scale)
 	return self:GetValue()
 end
 
---- Binds a Control to this Monitor. 
+--- Binds a Control to this Monitor.
 -- Only one Control can be bound at a time. At the time of binding all Inputs
 -- of the Control are processed and added to the Monitor. Any changes to the
 -- Control after its bound will not be reflected in the Monitor's operation.
@@ -141,27 +139,14 @@ end
 -- @param control the Control to bind
 function Monitor:Bind(control)
 	if not self:Bound() then
-		for _, input in ipairs(control.inputs) do
-			local entry = {}
-			entry.Type = input.Type
-			entry.Code = input.Code
-			entry.Offset = input.Offset
-			entry.Devices = input.Devices
-			self:processEntry(entry)
-			table.insert(self.inputs, entry)
-		end
-		self.bound = true
+		self.control = control
 	end
 end
 
 --- Unbinds this Monitor from any Control it may be bound to.
 -- Automatically resets this Monitor.
 function Monitor:Unbind()
-	if self:Bound() then
-		self.inputs = {}
-		self:clean()
-		self.bound = false
-	end
+	self.control = nil
 end
 
 --- Transforms an Input's value for this Monitor based on its InputType.
@@ -214,23 +199,6 @@ end
 -- @return the default value
 function Monitor:defaultValue()
 	Console.warn("defaultValue must be overridden and should not be called from Monitor.")
-end
-
---- Performs any necessary post-processing of an entry for this Monitor.
--- Occurs when new entries are added to this Monitor during the binding step.
--- The monitor may modify or add any values to the entry. An entry has fields
--- Type, Code, Offset, and, Devices, from its associated Input.
---
--- @param entry the entry to process
-function Monitor:processEntry()
-	Console.warn("processEntry must be overridden and should not be called from Monitor.")
-end
-
---- Cleans up any additional data or state created by this Monitor.
--- Occurs during this Monitor's unbind step. Leaves this Monitor in a state
--- ready to be bound again.
-function Monitor:clean()
-	Console.warn("clean must be overridden and should not be called from Monitor.")
 end
 
 -- End --
