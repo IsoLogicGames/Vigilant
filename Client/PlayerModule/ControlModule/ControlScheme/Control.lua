@@ -5,7 +5,7 @@
 -- given.
 --
 -- @author LastTalon
--- @version 0.1.0, 2020-04-16
+-- @version 0.1.1, 2020-11-06
 -- @since 0.1
 --
 -- @module Control
@@ -54,21 +54,30 @@ end
 -- Adds the specified Input. If none is specified it creates a new Input. It
 -- then returns the Input that was added.
 --
+-- @param id the id of the Input
 -- @param input the Input to add
 -- @return the Input added
-function Control:Add(input)
+function Control:Add(id, input)
 	input = input or Input.new()
-	table.insert(self.Inputs, input)
+	self.Inputs[id] = input
 	return input
 end
 
---- Removes an Input from this control.
--- Removes the Input at the specified index. If no index is specified the last
--- Input is removed.
+--- Gets and Input of this control.
+-- Gets the Input at the specified id.
 --
--- @param index the index of the Input to remove
-function Control:Remove(index)
-	table.remove(self.Inputs, index)
+-- @param id the id of hte Input
+-- @return the Input
+function Control:Get(id)
+	return self.Inputs[id]
+end
+
+--- Removes an Input from this control.
+-- Removes the Input with the specified id.
+--
+-- @param id the id of the Input to remove
+function Control:Remove(id)
+	self.Inputs[id] = nil
 end
 
 -- End --
