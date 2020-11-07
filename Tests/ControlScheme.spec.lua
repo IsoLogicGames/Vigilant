@@ -50,7 +50,7 @@ return function()
 			local count = 0
 			for id, control in controlScheme:Controls() do
 				count = count + 1
-				expect(id).to.equal("Test " .. count)
+				expect(id:sub(1, 5)).to.equal("Test ")
 				expect(control).to.be.ok()
 			end
 			expect(count).to.equal(total)
@@ -94,7 +94,7 @@ return function()
 				local count = 0
 				for id, input in control:Inputs() do
 					count = count + 1
-					expect(id).to.equal("Test " .. count)
+					expect(id:sub(1, 5)).to.equal("Test ")
 					expect(input).to.be.ok()
 				end
 				expect(count).to.equal(total)
