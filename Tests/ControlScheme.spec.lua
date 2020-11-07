@@ -41,6 +41,21 @@ return function()
 			expect(controlScheme:Get("Test")).never.to.be.ok()
 		end)
 
+		it("should provide an iterator for its Controls", function()
+			local controlScheme = ControlScheme.new()
+			local total = 10
+			for i = 1, total do
+				controlScheme:Add("Test " .. i)
+			end
+			local count = 0
+			for id, control in controlScheme:Controls() do
+				count = count + 1
+				expect(id).to.equal("Test " .. count)
+				expect(control).to.be.ok()
+			end
+			expect(count).to.equal(total)
+		end)
+
 		describe("Control", function()
 			it("should be able to be instantiated", function()
 				local control = Control.new()
@@ -68,6 +83,21 @@ return function()
 				expect(control:Get("Test")).to.be.ok()
 				control:Remove("Test")
 				expect(control:Get("Test")).never.to.be.ok()
+			end)
+
+			it("should provide an iterator for its Inputs", function()
+				local control = Control.new()
+				local total = 10
+				for i = 1, total do
+					control:Add("Test " .. i)
+				end
+				local count = 0
+				for id, input in control:Inputs() do
+					count = count + 1
+					expect(id).to.equal("Test " .. count)
+					expect(input).to.be.ok()
+				end
+				expect(count).to.equal(total)
 			end)
 		end)
 
