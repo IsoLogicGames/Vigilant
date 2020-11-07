@@ -152,7 +152,7 @@ return function()
 			expect(monitor:GetValue()).to.equal(0)
 			value = 1
 			monitor:Update()
-			expect(monitor:GetValue()).to.equal(2)
+			expect(monitor:GetValue()).to.equal(1)
 			monitor:Unbind()
 		end)
 
@@ -184,7 +184,7 @@ return function()
 			expect(monitor:GetValue()).to.equal(0)
 			value = 1
 			monitor:Update()
-			expect(monitor:GetValue()).to.equal(2)
+			expect(monitor:GetValue()).to.equal(1)
 			monitor:Unbind()
 		end)
 
@@ -217,7 +217,7 @@ return function()
 			expect(monitor:GetValue()).to.equal(0)
 			value = 1
 			monitor:Update()
-			expect(monitor:GetValue()).to.equal(2)
+			expect(monitor:GetValue()).to.equal(1)
 			monitor:Unbind()
 		end)
 
@@ -250,7 +250,7 @@ return function()
 			expect(monitor:GetValue()).to.equal(0)
 			value = 1
 			monitor:Update()
-			expect(monitor:GetValue()).to.equal(2)
+			expect(monitor:GetValue()).to.equal(1)
 			monitor:Unbind()
 		end)
 
@@ -283,7 +283,7 @@ return function()
 			expect(monitor:GetValue()).to.equal(0)
 			value = 1
 			monitor:Update()
-			expect(monitor:GetValue()).to.equal(2)
+			expect(monitor:GetValue()).to.equal(1)
 			monitor:Unbind()
 		end)
 
@@ -343,7 +343,7 @@ return function()
 			expect(monitor:GetValue()).to.equal(0)
 			value = 1
 			monitor:Update()
-			expect(monitor:GetValue()).to.equal(2)
+			expect(monitor:GetValue()).to.equal(1)
 			monitor:Unbind()
 		end)
 
@@ -376,7 +376,7 @@ return function()
 			expect(monitor:GetValue()).to.equal(0)
 			value = 1
 			monitor:Update()
-			expect(monitor:GetValue()).to.equal(2)
+			expect(monitor:GetValue()).to.equal(1)
 			monitor:Unbind()
 		end)
 
@@ -409,7 +409,7 @@ return function()
 			expect(monitor:GetValue()).to.equal(0)
 			value = 1
 			monitor:Update()
-			expect(monitor:GetValue()).to.equal(2)
+			expect(monitor:GetValue()).to.equal(1)
 			monitor:Unbind()
 		end)
 
@@ -442,7 +442,7 @@ return function()
 			expect(monitor:GetValue()).to.equal(0)
 			value = 1
 			monitor:Update()
-			expect(monitor:GetValue()).to.equal(2)
+			expect(monitor:GetValue()).to.equal(1)
 			monitor:Unbind()
 		end)
 
@@ -502,7 +502,7 @@ return function()
 			expect(monitor:GetValue()).to.equal(0)
 			value = 1
 			monitor:Update()
-			expect(monitor:GetValue()).to.equal(2)
+			expect(monitor:GetValue()).to.equal(1)
 			monitor:Unbind()
 		end)
 
