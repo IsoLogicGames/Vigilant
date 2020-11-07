@@ -54,10 +54,10 @@ return function()
 			end
 
 			monitor:Update()
-			expect(monitor:GetValue()).never.to.equal(value)
+			expect(monitor:GetValue()).to.equal(value)
 			value = 1
 			monitor:Update()
-			expect(monitor:GetValue()).never.to.equal(value)
+			expect(monitor:GetValue()).to.equal(value)
 		end)
 
 		it("should report if its value has been updated", function()
