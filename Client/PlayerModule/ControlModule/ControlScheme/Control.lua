@@ -43,7 +43,7 @@ Control.__index = Control
 -- @return the new Control
 function Control.new(name, description, method)
 	local self = setmetatable({}, Control)
-	self.Inputs = {}
+	self.InputSet = {}
 	self.Name = name
 	self.Description = description
 	self.Method = method
@@ -59,7 +59,7 @@ end
 -- @return the Input added
 function Control:Add(id, input)
 	input = input or Input.new()
-	self.Inputs[id] = input
+	self.InputSet[id] = input
 	return input
 end
 
@@ -69,7 +69,7 @@ end
 -- @param id the id of hte Input
 -- @return the Input
 function Control:Get(id)
-	return self.Inputs[id]
+	return self.InputSet[id]
 end
 
 --- Removes an Input from this control.
@@ -77,7 +77,7 @@ end
 --
 -- @param id the id of the Input to remove
 function Control:Remove(id)
-	self.Inputs[id] = nil
+	self.InputSet[id] = nil
 end
 
 --- The iterator for this Control
@@ -85,7 +85,7 @@ end
 --
 -- @return the iterator
 function Control:Inputs()
-	return pairs(self.Inputs)
+	return pairs(self.InputSet)
 end
 
 -- End --
