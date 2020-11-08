@@ -95,7 +95,7 @@ return function()
 		it("should update for None", function()
 			local monitor = Monitor.new()
 			local control = Control.new()
-			local input = control:Add()
+			local input = control:Add("Test")
 			input.Type = InputType.None
 			local value = 0
 
@@ -129,7 +129,7 @@ return function()
 		it("should update for Keyboard", function()
 			local monitor = Monitor.new()
 			local control = Control.new()
-			local input = control:Add()
+			local input = control:Add("Test")
 			input.Type = InputType.Keyboard
 			local value = 0
 
@@ -163,7 +163,7 @@ return function()
 		it("should update for MouseButton", function()
 			local monitor = Monitor.new()
 			local control = Control.new()
-			local input = control:Add()
+			local input = control:Add("Test")
 			input.Type = InputType.MouseButton
 			local value = 0
 
@@ -197,7 +197,7 @@ return function()
 		it("should update for MouseMovement with method None", function()
 			local monitor = Monitor.new()
 			local control = Control.new()
-			local input = control:Add()
+			local input = control:Add("Test")
 			input.Type = InputType.MouseMovement
 			input.Code = DirectionMethod.None
 			local value = 0
@@ -232,7 +232,7 @@ return function()
 		it("should update for MouseMovement with method Absolute", function()
 			local monitor = Monitor.new()
 			local control = Control.new()
-			local input = control:Add()
+			local input = control:Add("Test")
 			input.Type = InputType.MouseMovement
 			input.Code = DirectionMethod.Absolute
 			local value = 0
@@ -267,7 +267,7 @@ return function()
 		it("should update for MouseMovement with method Relative", function()
 			local monitor = Monitor.new()
 			local control = Control.new()
-			local input = control:Add()
+			local input = control:Add("Test")
 			input.Type = InputType.MouseMovement
 			input.Code = DirectionMethod.Relative
 			local value = 0
@@ -302,7 +302,7 @@ return function()
 		it("should error for MouseMovement with invalid method", function()
 			local monitor = Monitor.new()
 			local control = Control.new()
-			local input = control:Add()
+			local input = control:Add("Test")
 			input.Type = InputType.MouseMovement
 			local value = 0
 
@@ -332,7 +332,7 @@ return function()
 		it("should update for GamePadButton", function()
 			local monitor = Monitor.new()
 			local control = Control.new()
-			local input = control:Add()
+			local input = control:Add("Test")
 			input.Type = InputType.GamePadButton
 			local value = 0
 
@@ -366,7 +366,7 @@ return function()
 		it("should update for GamePadDirection with method None", function()
 			local monitor = Monitor.new()
 			local control = Control.new()
-			local input = control:Add()
+			local input = control:Add("Test")
 			input.Type = InputType.GamePadDirection
 			input.Code = DirectionMethod.None
 			local value = 0
@@ -401,7 +401,7 @@ return function()
 		it("should update for GamePadDirection with method Absolute", function()
 			local monitor = Monitor.new()
 			local control = Control.new()
-			local input = control:Add()
+			local input = control:Add("Test")
 			input.Type = InputType.GamePadDirection
 			input.Code = DirectionMethod.Absolute
 			local value = 0
@@ -436,7 +436,7 @@ return function()
 		it("should update for GamePadDirection with method Relative", function()
 			local monitor = Monitor.new()
 			local control = Control.new()
-			local input = control:Add()
+			local input = control:Add("Test")
 			input.Type = InputType.GamePadDirection
 			input.Code = DirectionMethod.Relative
 			local value = 0
@@ -471,7 +471,7 @@ return function()
 		it("should error for GamePadDirection with invalid method", function()
 			local monitor = Monitor.new()
 			local control = Control.new()
-			local input = control:Add()
+			local input = control:Add("Test")
 			input.Type = InputType.GamePadDirection
 			local value = 0
 
@@ -501,7 +501,7 @@ return function()
 		it("should update for Scheme", function()
 			local monitor = Monitor.new()
 			local control = Control.new()
-			local input = control:Add()
+			local input = control:Add("Test")
 			input.Type = InputType.Scheme
 			local value = 0
 
@@ -535,7 +535,7 @@ return function()
 		it("should error for invalid type", function()
 			local monitor = Monitor.new()
 			local control = Control.new()
-			control:Add()
+			control:Add("Test")
 			local value = 0
 
 			function monitor:defaultValue()
@@ -566,8 +566,8 @@ return function()
 			local input
 			local amount = 10
 			local value = 0
-			for _=1, amount do
-				input = control:Add()
+			for i=1, amount do
+				input = control:Add("Test " .. i)
 				input.Type = InputType.None
 			end
 
