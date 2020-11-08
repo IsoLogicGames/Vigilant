@@ -337,6 +337,7 @@ return function()
 			local input = control:Add("Test")
 			input.Type = InputType.GamepadButton
 			input.Code = 0
+			input.Device = Enum.UserInputType.Gamepad1
 			local value = 0
 
 			function monitor:defaultValue()
@@ -372,7 +373,7 @@ return function()
 			local input = control:Add("Test")
 			input.Type = InputType.GamepadDirection
 			input.Code = DirectionMethod.None
-			input.Device = 0
+			input.Device = Enum.UserInputType.Gamepad1
 			local value = 0
 
 			function monitor:defaultValue()
@@ -408,7 +409,7 @@ return function()
 			local input = control:Add("Test")
 			input.Type = InputType.GamepadDirection
 			input.Code = DirectionMethod.Absolute
-			input.Device = 0
+			input.Device = Enum.UserInputType.Gamepad1
 			local value = 0
 
 			function monitor:defaultValue()
@@ -444,7 +445,7 @@ return function()
 			local input = control:Add("Test")
 			input.Type = InputType.GamepadDirection
 			input.Code = DirectionMethod.Relative
-			input.Device = 0
+			input.Device = Enum.UserInputType.Gamepad1
 			local value = 0
 
 			function monitor:defaultValue()
@@ -600,7 +601,7 @@ return function()
 			expect(monitor:GetValue()).to.equal(0)
 			value = 1
 			monitor:Update()
-			expect(monitor:GetValue()).to.equal(amount + 1)
+			expect(monitor:GetValue()).to.equal(amount)
 			monitor:Unbind()
 		end)
 
