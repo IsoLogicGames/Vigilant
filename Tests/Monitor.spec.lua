@@ -131,6 +131,7 @@ return function()
 			local control = Control.new()
 			local input = control:Add("Test")
 			input.Type = InputType.Keyboard
+			input.Code = 0
 			local value = 0
 
 			function monitor:defaultValue()
@@ -165,6 +166,7 @@ return function()
 			local control = Control.new()
 			local input = control:Add("Test")
 			input.Type = InputType.MouseButton
+			input.Code = 0
 			local value = 0
 
 			function monitor:defaultValue()
@@ -329,11 +331,12 @@ return function()
 			monitor:Unbind()
 		end)
 
-		it("should update for GamePadButton", function()
+		it("should update for GamepadButton", function()
 			local monitor = Monitor.new()
 			local control = Control.new()
 			local input = control:Add("Test")
-			input.Type = InputType.GamePadButton
+			input.Type = InputType.GamepadButton
+			input.Code = 0
 			local value = 0
 
 			function monitor:defaultValue()
@@ -363,12 +366,13 @@ return function()
 			monitor:Unbind()
 		end)
 
-		it("should update for GamePadDirection with method None", function()
+		it("should update for GamepadDirection with method None", function()
 			local monitor = Monitor.new()
 			local control = Control.new()
 			local input = control:Add("Test")
-			input.Type = InputType.GamePadDirection
+			input.Type = InputType.GamepadDirection
 			input.Code = DirectionMethod.None
+			input.Device = 0
 			local value = 0
 
 			function monitor:defaultValue()
@@ -398,12 +402,13 @@ return function()
 			monitor:Unbind()
 		end)
 
-		it("should update for GamePadDirection with method Absolute", function()
+		it("should update for GamepadDirection with method Absolute", function()
 			local monitor = Monitor.new()
 			local control = Control.new()
 			local input = control:Add("Test")
-			input.Type = InputType.GamePadDirection
+			input.Type = InputType.GamepadDirection
 			input.Code = DirectionMethod.Absolute
+			input.Device = 0
 			local value = 0
 
 			function monitor:defaultValue()
@@ -433,12 +438,13 @@ return function()
 			monitor:Unbind()
 		end)
 
-		it("should update for GamePadDirection with method Relative", function()
+		it("should update for GamepadDirection with method Relative", function()
 			local monitor = Monitor.new()
 			local control = Control.new()
 			local input = control:Add("Test")
-			input.Type = InputType.GamePadDirection
+			input.Type = InputType.GamepadDirection
 			input.Code = DirectionMethod.Relative
+			input.Device = 0
 			local value = 0
 
 			function monitor:defaultValue()
@@ -468,11 +474,11 @@ return function()
 			monitor:Unbind()
 		end)
 
-		it("should error for GamePadDirection with invalid method", function()
+		it("should error for GamepadDirection with invalid method", function()
 			local monitor = Monitor.new()
 			local control = Control.new()
 			local input = control:Add("Test")
-			input.Type = InputType.GamePadDirection
+			input.Type = InputType.GamepadDirection
 			local value = 0
 
 			function monitor:defaultValue()
@@ -503,6 +509,7 @@ return function()
 			local control = Control.new()
 			local input = control:Add("Test")
 			input.Type = InputType.Scheme
+			input.Code = 0
 			local value = 0
 
 			function monitor:defaultValue()
