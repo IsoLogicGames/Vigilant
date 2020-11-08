@@ -47,6 +47,7 @@ Monitor.__index = Monitor
 -- @return the new Monitor
 function Monitor.new()
 	local self = setmetatable({}, Monitor)
+	self.updated = false
 	return self
 end
 
@@ -83,60 +84,74 @@ end
 -- @see Input
 -- @see ControlModule
 function Monitor:Update()
-	local value = self:nullValue()
+	local value = self:defaultValue()
 	local scale = 0
-	for _, input in ipairs(self.inputs) do
-		local inputValue
-		local inputScale
-		local valid = true
 
-		-- Get specific input
-		if input.Type == InputType.None then
-			inputValue = false
-		elseif input.Type == InputType.Keyboard then
-			inputValue = UserInputService:IsKeyDown(input.Code)
-		elseif input.Type == InputType.MouseButton then
-			inputValue = UserInputService:IsMouseButtonPressed(input.Code)
-		elseif input.Type == InputType.MouseMovement then
-			if input.Code == DirectionMethod.None then
+	if self:Bound() then
+		for _, input in self.control:Inputs() do
+			local inputValue
+			local valid = true
+
+			-- Get specific input
+			if input.Type == InputType.None then
 				inputValue = false
-			elseif input.Code == DirectionMethod.Absolute then
-				inputValue = UserInputService:GetMouseLocation()
-			elseif input.Code == DirectionMethod.Relative then
-				inputValue = UserInputService:GetMouseDelta()
+			elseif input.Type == InputType.Keyboard then
+				inputValue = UserInputService:IsKeyDown(input.Code)
+			elseif input.Type == InputType.MouseButton then
+				inputValue = UserInputService:IsMouseButtonPressed(input.Code)
+			elseif input.Type == InputType.MouseMovement then
+				if input.Code == DirectionMethod.None then
+					inputValue = false
+				elseif input.Code == DirectionMethod.Absolute then
+					inputValue = UserInputService:GetMouseLocation()
+				elseif input.Code == DirectionMethod.Relative then
+					inputValue = UserInputService:GetMouseDelta()
+				else
+					Console.error("Input has invalid direction method.")
+					valid = false
+				end
+			elseif input.Type == InputType.GamepadButton then
+				inputValue = UserInputService:IsGamepadButtonDown(input.Device, input.Code)
+			elseif input.Type == InputType.GamepadDirection then
+				if input.Code == DirectionMethod.None then
+					inputValue = false
+				elseif input.Code == DirectionMethod.Absolute then
+					local deviceInput = getDeviceInput(input.Code, input.Device)
+					if deviceInput == nil then
+						inputValue = Vector3.new(0, 0, 0)
+					else
+						inputValue = deviceInput.Position
+					end
+				elseif input.Code == DirectionMethod.Relative then
+					local deviceInput = getDeviceInput(input.Code, input.Device)
+					if deviceInput == nil then
+						inputValue = Vector3.new(0, 0, 0)
+					else
+						inputValue = deviceInput.Delta
+					end
+				else
+					Console.error("Input has invalid direction method.")
+					valid = false
+				end
+			elseif input.Type == InputType.Scheme then
+				inputValue = input.Code
 			else
-				Console.error("Input has invalid direction method.")
+				Console.error("Input has invalid type.")
 				valid = false
 			end
-		elseif input.Type == InputType.GamepadButton then
-			inputValue = UserInputService:IsGamepadButtonDown(input.Code, input.Device)
-		elseif input.Type == InputType.GamepadDirection then
-			if input.Code == DirectionMethod.None then
-				inputValue = false
-			elseif input.Code == DirectionMethod.Absolute then
-				inputValue = getDeviceInput(input.Code, input.Device).Position
-			elseif input.Code == DirectionMethod.Relative then
-				inputValue = getDeviceInput(input.Code, input.Device).Delta
-			else
-				Console.error("Input has invalid direction method.")
-				valid = false
-			end
-		elseif input.Type == InputType.Scheme then
-			inputValue = input.Code
-		else
-			Console.error("Input has invalid type.")
-			valid = false
-		end
 
-		if valid then
-			inputValue, inputScale = self:transformValue(input, inputValue)
-			value = self:addValue(value, inputValue)
-			scale = scale + inputScale
+			if valid then
+				local inputScale
+				inputValue, inputScale = self:transformValue(input, inputValue)
+				value = self:addValue(value, inputValue)
+				scale = scale + inputScale
+			end
 		end
 	end
 
-	self.value = self:scaleValue(value, scale)
-	return self:GetValue()
+	value = self:scaleValue(value, scale)
+	self.updated = self.value ~= value
+	self.value = value
 end
 
 --- Binds a Control to this Monitor.
