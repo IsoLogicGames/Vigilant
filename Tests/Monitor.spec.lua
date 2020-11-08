@@ -100,7 +100,7 @@ return function()
 			local value = 0
 
 			function monitor:defaultValue()
-				return value
+				return 0
 			end
 
 			function monitor:scaleValue(value)
@@ -111,7 +111,9 @@ return function()
 				return lhs + rhs
 			end
 
-			function monitor:transformValue()
+			function monitor:transformValue(passedInput, passedValue)
+				expect(passedInput).to.equal(input)
+				expect(passedValue).to.be.ok()
 				return value, 0
 			end
 
@@ -120,7 +122,7 @@ return function()
 			expect(monitor:GetValue()).to.equal(0)
 			value = 1
 			monitor:Update()
-			expect(monitor:GetValue()).to.equal(2)
+			expect(monitor:GetValue()).to.equal(1)
 			monitor:Unbind()
 		end)
 
@@ -132,7 +134,7 @@ return function()
 			local value = 0
 
 			function monitor:defaultValue()
-				return value
+				return 0
 			end
 
 			function monitor:scaleValue(value)
@@ -143,7 +145,9 @@ return function()
 				return lhs + rhs
 			end
 
-			function monitor:transformValue()
+			function monitor:transformValue(passedInput, passedValue)
+				expect(passedInput).to.equal(input)
+				expect(passedValue).to.be.ok()
 				return value, 0
 			end
 
@@ -164,7 +168,7 @@ return function()
 			local value = 0
 
 			function monitor:defaultValue()
-				return value
+				return 0
 			end
 
 			function monitor:scaleValue(value)
@@ -175,7 +179,9 @@ return function()
 				return lhs + rhs
 			end
 
-			function monitor:transformValue()
+			function monitor:transformValue(passedInput, passedValue)
+				expect(passedInput).to.equal(input)
+				expect(passedValue).to.be.ok()
 				return value, 0
 			end
 
@@ -197,7 +203,7 @@ return function()
 			local value = 0
 
 			function monitor:defaultValue()
-				return value
+				return 0
 			end
 
 			function monitor:scaleValue(value)
@@ -208,7 +214,9 @@ return function()
 				return lhs + rhs
 			end
 
-			function monitor:transformValue()
+			function monitor:transformValue(passedInput, passedValue)
+				expect(passedInput).to.equal(input)
+				expect(passedValue).to.be.ok()
 				return value, 0
 			end
 
@@ -230,7 +238,7 @@ return function()
 			local value = 0
 
 			function monitor:defaultValue()
-				return value
+				return 0
 			end
 
 			function monitor:scaleValue(value)
@@ -241,7 +249,9 @@ return function()
 				return lhs + rhs
 			end
 
-			function monitor:transformValue()
+			function monitor:transformValue(passedInput, passedValue)
+				expect(passedInput).to.equal(input)
+				expect(passedValue).to.be.ok()
 				return value, 0
 			end
 
@@ -263,7 +273,7 @@ return function()
 			local value = 0
 
 			function monitor:defaultValue()
-				return value
+				return 0
 			end
 
 			function monitor:scaleValue(value)
@@ -274,7 +284,9 @@ return function()
 				return lhs + rhs
 			end
 
-			function monitor:transformValue()
+			function monitor:transformValue(passedInput, passedValue)
+				expect(passedInput).to.equal(input)
+				expect(passedValue).to.be.ok()
 				return value, 0
 			end
 
@@ -295,7 +307,7 @@ return function()
 			local value = 0
 
 			function monitor:defaultValue()
-				return value
+				return 0
 			end
 
 			function monitor:scaleValue(value)
@@ -306,7 +318,9 @@ return function()
 				return lhs + rhs
 			end
 
-			function monitor:transformValue()
+			function monitor:transformValue(passedInput, passedValue)
+				expect(passedInput).to.equal(input)
+				expect(passedValue).to.be.ok()
 				return value, 0
 			end
 
@@ -323,7 +337,7 @@ return function()
 			local value = 0
 
 			function monitor:defaultValue()
-				return value
+				return 0
 			end
 
 			function monitor:scaleValue(value)
@@ -334,7 +348,9 @@ return function()
 				return lhs + rhs
 			end
 
-			function monitor:transformValue()
+			function monitor:transformValue(passedInput, passedValue)
+				expect(passedInput).to.equal(input)
+				expect(passedValue).to.be.ok()
 				return value, 0
 			end
 
@@ -356,7 +372,7 @@ return function()
 			local value = 0
 
 			function monitor:defaultValue()
-				return value
+				return 0
 			end
 
 			function monitor:scaleValue(value)
@@ -367,7 +383,9 @@ return function()
 				return lhs + rhs
 			end
 
-			function monitor:transformValue()
+			function monitor:transformValue(passedInput, passedValue)
+				expect(passedInput).to.equal(input)
+				expect(passedValue).to.be.ok()
 				return value, 0
 			end
 
@@ -389,7 +407,7 @@ return function()
 			local value = 0
 
 			function monitor:defaultValue()
-				return value
+				return 0
 			end
 
 			function monitor:scaleValue(value)
@@ -400,7 +418,9 @@ return function()
 				return lhs + rhs
 			end
 
-			function monitor:transformValue()
+			function monitor:transformValue(passedInput, passedValue)
+				expect(passedInput).to.equal(input)
+				expect(passedValue).to.be.ok()
 				return value, 0
 			end
 
@@ -422,7 +442,7 @@ return function()
 			local value = 0
 
 			function monitor:defaultValue()
-				return value
+				return 0
 			end
 
 			function monitor:scaleValue(value)
@@ -433,7 +453,9 @@ return function()
 				return lhs + rhs
 			end
 
-			function monitor:transformValue()
+			function monitor:transformValue(passedInput, passedValue)
+				expect(passedInput).to.equal(input)
+				expect(passedValue).to.be.ok()
 				return value, 0
 			end
 
@@ -454,7 +476,7 @@ return function()
 			local value = 0
 
 			function monitor:defaultValue()
-				return value
+				return 0
 			end
 
 			function monitor:scaleValue(value)
@@ -465,7 +487,9 @@ return function()
 				return lhs + rhs
 			end
 
-			function monitor:transformValue()
+			function monitor:transformValue(passedInput, passedValue)
+				expect(passedInput).to.equal(input)
+				expect(passedValue).to.be.ok()
 				return value, 0
 			end
 
@@ -482,7 +506,7 @@ return function()
 			local value = 0
 
 			function monitor:defaultValue()
-				return value
+				return 0
 			end
 
 			function monitor:scaleValue(value)
@@ -493,7 +517,9 @@ return function()
 				return lhs + rhs
 			end
 
-			function monitor:transformValue()
+			function monitor:transformValue(passedInput, passedValue)
+				expect(passedInput).to.equal(input)
+				expect(passedValue).to.be.ok()
 				return value, 0
 			end
 
@@ -513,7 +539,7 @@ return function()
 			local value = 0
 
 			function monitor:defaultValue()
-				return value
+				return 0
 			end
 
 			function monitor:scaleValue(value)
@@ -524,7 +550,8 @@ return function()
 				return lhs + rhs
 			end
 
-			function monitor:transformValue()
+			function monitor:transformValue(_, passedValue)
+				expect(passedValue).to.be.ok()
 				return value, 0
 			end
 
@@ -539,13 +566,13 @@ return function()
 			local input
 			local amount = 10
 			local value = 0
-			for i=1, amount do
+			for _=1, amount do
 				input = control:Add()
 				input.Type = InputType.None
 			end
 
 			function monitor:defaultValue()
-				return value
+				return 0
 			end
 
 			function monitor:scaleValue(value)
@@ -556,7 +583,8 @@ return function()
 				return lhs + rhs
 			end
 
-			function monitor:transformValue()
+			function monitor:transformValue(_, passedValue)
+				expect(passedValue).to.be.ok()
 				return value, 0
 			end
 
