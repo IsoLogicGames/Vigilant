@@ -609,7 +609,7 @@ return function()
 			it("should update for None", function()
 				local monitor = AxisMonitor.new()
 				local control = Control.new()
-				local input = control:Add()
+				local input = control:Add("Test")
 				input.Type = InputType.None
 
 				monitor:Bind(control)
@@ -621,8 +621,9 @@ return function()
 			it("should update for Keyboard", function()
 				local monitor = AxisMonitor.new()
 				local control = Control.new()
-				local input = control:Add()
+				local input = control:Add("Test")
 				input.Type = InputType.Keyboard
+				input.Code = 0
 
 				monitor:Bind(control)
 				monitor:Update()
@@ -633,8 +634,9 @@ return function()
 			it("should update for MouseButton", function()
 				local monitor = AxisMonitor.new()
 				local control = Control.new()
-				local input = control:Add()
+				local input = control:Add("Test")
 				input.Type = InputType.MouseButton
+				input.Code = 0
 
 				monitor:Bind(control)
 				monitor:Update()
@@ -645,7 +647,7 @@ return function()
 			it("should update for MouseMovement with method None", function()
 				local monitor = AxisMonitor.new()
 				local control = Control.new()
-				local input = control:Add()
+				local input = control:Add("Test")
 				input.Type = InputType.MouseMovement
 				input.Code = DirectionMethod.None
 
@@ -658,7 +660,7 @@ return function()
 			it("should update for MouseMovement with method Absolute", function()
 				local monitor = AxisMonitor.new()
 				local control = Control.new()
-				local input = control:Add()
+				local input = control:Add("Test")
 				input.Type = InputType.MouseMovement
 				input.Code = DirectionMethod.Absolute
 
@@ -671,7 +673,7 @@ return function()
 			it("should update for MouseMovement with method Relative", function()
 				local monitor = AxisMonitor.new()
 				local control = Control.new()
-				local input = control:Add()
+				local input = control:Add("Test")
 				input.Type = InputType.MouseMovement
 				input.Code = DirectionMethod.Relative
 
@@ -684,7 +686,7 @@ return function()
 			it("should error for MouseMovement with invalid method", function()
 				local monitor = AxisMonitor.new()
 				local control = Control.new()
-				local input = control:Add()
+				local input = control:Add("Test")
 				input.Type = InputType.MouseMovement
 
 				monitor:Bind(control)
@@ -692,11 +694,13 @@ return function()
 				monitor:Unbind()
 			end)
 
-			it("should update for GamePadButton", function()
+			it("should update for GamepadButton", function()
 				local monitor = AxisMonitor.new()
 				local control = Control.new()
-				local input = control:Add()
-				input.Type = InputType.GamePadButton
+				local input = control:Add("Test")
+				input.Type = InputType.GamepadButton
+				input.Code = 0
+				input.Device = Enum.UserInputType.Gamepad1
 
 				monitor:Bind(control)
 				monitor:Update()
@@ -704,12 +708,13 @@ return function()
 				monitor:Unbind()
 			end)
 
-			it("should update for GamePadDirection with method None", function()
+			it("should update for GamepadDirection with method None", function()
 				local monitor = AxisMonitor.new()
 				local control = Control.new()
-				local input = control:Add()
-				input.Type = InputType.GamePadDirection
+				local input = control:Add("Test")
+				input.Type = InputType.GamepadDirection
 				input.Code = DirectionMethod.None
+				input.Device = Enum.UserInputType.Gamepad1
 
 				monitor:Bind(control)
 				monitor:Update()
@@ -717,12 +722,13 @@ return function()
 				monitor:Unbind()
 			end)
 
-			it("should update for GamePadDirection with method Absolute", function()
+			it("should update for GamepadDirection with method Absolute", function()
 				local monitor = AxisMonitor.new()
 				local control = Control.new()
-				local input = control:Add()
-				input.Type = InputType.GamePadDirection
+				local input = control:Add("Test")
+				input.Type = InputType.GamepadDirection
 				input.Code = DirectionMethod.Absolute
+				input.Device = Enum.UserInputType.Gamepad1
 
 				monitor:Bind(control)
 				monitor:Update()
@@ -730,12 +736,13 @@ return function()
 				monitor:Unbind()
 			end)
 
-			it("should update for GamePadDirection with method Relative", function()
+			it("should update for GamepadDirection with method Relative", function()
 				local monitor = AxisMonitor.new()
 				local control = Control.new()
-				local input = control:Add()
-				input.Type = InputType.GamePadDirection
+				local input = control:Add("Test")
+				input.Type = InputType.GamepadDirection
 				input.Code = DirectionMethod.Relative
+				input.Device = Enum.UserInputType.Gamepad1
 
 				monitor:Bind(control)
 				monitor:Update()
@@ -743,11 +750,11 @@ return function()
 				monitor:Unbind()
 			end)
 
-			it("should error for GamePadDirection with invalid method", function()
+			it("should error for GamepadDirection with invalid method", function()
 				local monitor = AxisMonitor.new()
 				local control = Control.new()
-				local input = control:Add()
-				input.Type = InputType.GamePadDirection
+				local input = control:Add("Test")
+				input.Type = InputType.GamepadDirection
 
 				monitor:Bind(control)
 				expect(function() monitor:Update() end).to.throw()
@@ -757,8 +764,9 @@ return function()
 			it("should update for Scheme", function()
 				local monitor = AxisMonitor.new()
 				local control = Control.new()
-				local input = control:Add()
+				local input = control:Add("Test")
 				input.Type = InputType.Scheme
+				input.Code = 0
 
 				monitor:Bind(control)
 				monitor:Update()
@@ -769,7 +777,7 @@ return function()
 			it("should error for invalid type", function()
 				local monitor = AxisMonitor.new()
 				local control = Control.new()
-				control:Add()
+				control:Add("Test")
 
 				monitor:Bind(control)
 				expect(function() monitor:Update() end).to.throw()
@@ -781,7 +789,7 @@ return function()
 			it("should update for None", function()
 				local monitor = BinaryMonitor.new()
 				local control = Control.new()
-				local input = control:Add()
+				local input = control:Add("Test")
 				input.Type = InputType.None
 
 				monitor:Bind(control)
@@ -793,8 +801,9 @@ return function()
 			it("should update for Keyboard", function()
 				local monitor = BinaryMonitor.new()
 				local control = Control.new()
-				local input = control:Add()
+				local input = control:Add("Test")
 				input.Type = InputType.Keyboard
+				input.Code = 0
 
 				monitor:Bind(control)
 				monitor:Update()
@@ -805,8 +814,9 @@ return function()
 			it("should update for MouseButton", function()
 				local monitor = BinaryMonitor.new()
 				local control = Control.new()
-				local input = control:Add()
+				local input = control:Add("Test")
 				input.Type = InputType.MouseButton
+				input.Code = 0
 
 				monitor:Bind(control)
 				monitor:Update()
@@ -817,7 +827,7 @@ return function()
 			it("should update for MouseMovement with method None", function()
 				local monitor = BinaryMonitor.new()
 				local control = Control.new()
-				local input = control:Add()
+				local input = control:Add("Test")
 				input.Type = InputType.MouseMovement
 				input.Code = DirectionMethod.None
 
@@ -830,7 +840,7 @@ return function()
 			it("should update for MouseMovement with method Absolute", function()
 				local monitor = BinaryMonitor.new()
 				local control = Control.new()
-				local input = control:Add()
+				local input = control:Add("Test")
 				input.Type = InputType.MouseMovement
 				input.Code = DirectionMethod.Absolute
 
@@ -843,7 +853,7 @@ return function()
 			it("should update for MouseMovement with method Relative", function()
 				local monitor = BinaryMonitor.new()
 				local control = Control.new()
-				local input = control:Add()
+				local input = control:Add("Test")
 				input.Type = InputType.MouseMovement
 				input.Code = DirectionMethod.Relative
 
@@ -856,7 +866,7 @@ return function()
 			it("should error for MouseMovement with invalid method", function()
 				local monitor = BinaryMonitor.new()
 				local control = Control.new()
-				local input = control:Add()
+				local input = control:Add("Test")
 				input.Type = InputType.MouseMovement
 
 				monitor:Bind(control)
@@ -864,11 +874,13 @@ return function()
 				monitor:Unbind()
 			end)
 
-			it("should update for GamePadButton", function()
+			it("should update for GamepadButton", function()
 				local monitor = BinaryMonitor.new()
 				local control = Control.new()
-				local input = control:Add()
-				input.Type = InputType.GamePadButton
+				local input = control:Add("Test")
+				input.Type = InputType.GamepadButton
+				input.Code = 0
+				input.Device = Enum.UserInputType.Gamepad1
 
 				monitor:Bind(control)
 				monitor:Update()
@@ -876,12 +888,13 @@ return function()
 				monitor:Unbind()
 			end)
 
-			it("should update for GamePadDirection with method None", function()
+			it("should update for GamepadDirection with method None", function()
 				local monitor = BinaryMonitor.new()
 				local control = Control.new()
-				local input = control:Add()
-				input.Type = InputType.GamePadDirection
+				local input = control:Add("Test")
+				input.Type = InputType.GamepadDirection
 				input.Code = DirectionMethod.None
+				input.Device = Enum.UserInputType.Gamepad1
 
 				monitor:Bind(control)
 				monitor:Update()
@@ -889,12 +902,13 @@ return function()
 				monitor:Unbind()
 			end)
 
-			it("should update for GamePadDirection with method Absolute", function()
+			it("should update for GamepadDirection with method Absolute", function()
 				local monitor = BinaryMonitor.new()
 				local control = Control.new()
-				local input = control:Add()
-				input.Type = InputType.GamePadDirection
+				local input = control:Add("Test")
+				input.Type = InputType.GamepadDirection
 				input.Code = DirectionMethod.Absolute
+				input.Device = Enum.UserInputType.Gamepad1
 
 				monitor:Bind(control)
 				monitor:Update()
@@ -902,12 +916,13 @@ return function()
 				monitor:Unbind()
 			end)
 
-			it("should update for GamePadDirection with method Relative", function()
+			it("should update for GamepadDirection with method Relative", function()
 				local monitor = BinaryMonitor.new()
 				local control = Control.new()
-				local input = control:Add()
-				input.Type = InputType.GamePadDirection
+				local input = control:Add("Test")
+				input.Type = InputType.GamepadDirection
 				input.Code = DirectionMethod.Relative
+				input.Device = Enum.UserInputType.Gamepad1
 
 				monitor:Bind(control)
 				monitor:Update()
@@ -915,11 +930,11 @@ return function()
 				monitor:Unbind()
 			end)
 
-			it("should error for GamePadDirection with invalid method", function()
+			it("should error for GamepadDirection with invalid method", function()
 				local monitor = BinaryMonitor.new()
 				local control = Control.new()
-				local input = control:Add()
-				input.Type = InputType.GamePadDirection
+				local input = control:Add("Test")
+				input.Type = InputType.GamepadDirection
 				input.Code = DirectionMethod.None
 
 				monitor:Bind(control)
@@ -930,8 +945,9 @@ return function()
 			it("should update for Scheme", function()
 				local monitor = BinaryMonitor.new()
 				local control = Control.new()
-				local input = control:Add()
+				local input = control:Add("Test")
 				input.Type = InputType.Scheme
+				input.Code = 0
 
 				monitor:Bind(control)
 				monitor:Update()
@@ -942,7 +958,7 @@ return function()
 			it("should error for invalid type", function()
 				local monitor = BinaryMonitor.new()
 				local control = Control.new()
-				control:Add()
+				control:Add("Test")
 
 				monitor:Bind(control)
 				expect(function() monitor:Update() end).to.throw()
@@ -954,7 +970,7 @@ return function()
 			it("should update for None", function()
 				local monitor = VectorMonitor.new()
 				local control = Control.new()
-				local input = control:Add()
+				local input = control:Add("Test")
 				input.Type = InputType.None
 
 				monitor:Bind(control)
@@ -967,8 +983,9 @@ return function()
 			it("should update for Keyboard", function()
 				local monitor = VectorMonitor.new()
 				local control = Control.new()
-				local input = control:Add()
+				local input = control:Add("Test")
 				input.Type = InputType.Keyboard
+				input.Code = 0
 
 				monitor:Bind(control)
 				monitor:Update()
@@ -980,8 +997,9 @@ return function()
 			it("should update for MouseButton", function()
 				local monitor = VectorMonitor.new()
 				local control = Control.new()
-				local input = control:Add()
+				local input = control:Add("Test")
 				input.Type = InputType.MouseButton
+				input.Code = 0
 
 				monitor:Bind(control)
 				monitor:Update()
@@ -993,7 +1011,7 @@ return function()
 			it("should update for MouseMovement with method None", function()
 				local monitor = VectorMonitor.new()
 				local control = Control.new()
-				local input = control:Add()
+				local input = control:Add("Test")
 				input.Type = InputType.MouseMovement
 				input.Code = DirectionMethod.None
 
@@ -1007,7 +1025,7 @@ return function()
 			it("should update for MouseMovement with method Absolute", function()
 				local monitor = VectorMonitor.new()
 				local control = Control.new()
-				local input = control:Add()
+				local input = control:Add("Test")
 				input.Type = InputType.MouseMovement
 				input.Code = DirectionMethod.Absolute
 
@@ -1021,7 +1039,7 @@ return function()
 			it("should update for MouseMovement with method Relative", function()
 				local monitor = VectorMonitor.new()
 				local control = Control.new()
-				local input = control:Add()
+				local input = control:Add("Test")
 				input.Type = InputType.MouseMovement
 				input.Code = DirectionMethod.Relative
 
@@ -1035,7 +1053,7 @@ return function()
 			it("should error for MouseMovement with invalid method", function()
 				local monitor = VectorMonitor.new()
 				local control = Control.new()
-				local input = control:Add()
+				local input = control:Add("Test")
 				input.Type = InputType.MouseMovement
 
 				monitor:Bind(control)
@@ -1043,11 +1061,13 @@ return function()
 				monitor:Unbind()
 			end)
 
-			it("should update for GamePadButton", function()
+			it("should update for GamepadButton", function()
 				local monitor = VectorMonitor.new()
 				local control = Control.new()
-				local input = control:Add()
-				input.Type = InputType.GamePadButton
+				local input = control:Add("Test")
+				input.Type = InputType.GamepadButton
+				input.Code = 0
+				input.Device = Enum.UserInputType.Gamepad1
 
 				monitor:Bind(control)
 				monitor:Update()
@@ -1056,12 +1076,13 @@ return function()
 				monitor:Unbind()
 			end)
 
-			it("should update for GamePadDirection with method None", function()
+			it("should update for GamepadDirection with method None", function()
 				local monitor = VectorMonitor.new()
 				local control = Control.new()
-				local input = control:Add()
-				input.Type = InputType.GamePadDirection
+				local input = control:Add("Test")
+				input.Type = InputType.GamepadDirection
 				input.Code = DirectionMethod.None
+				input.Device = Enum.UserInputType.Gamepad1
 
 				monitor:Bind(control)
 				monitor:Update()
@@ -1070,12 +1091,13 @@ return function()
 				monitor:Unbind()
 			end)
 
-			it("should update for GamePadDirection with method Absolute", function()
+			it("should update for GamepadDirection with method Absolute", function()
 				local monitor = VectorMonitor.new()
 				local control = Control.new()
-				local input = control:Add()
-				input.Type = InputType.GamePadDirection
+				local input = control:Add("Test")
+				input.Type = InputType.GamepadDirection
 				input.Code = DirectionMethod.Absolute
+				input.Device = Enum.UserInputType.Gamepad1
 
 				monitor:Bind(control)
 				monitor:Update()
@@ -1084,12 +1106,13 @@ return function()
 				monitor:Unbind()
 			end)
 
-			it("should update for GamePadDirection with method Relative", function()
+			it("should update for GamepadDirection with method Relative", function()
 				local monitor = VectorMonitor.new()
 				local control = Control.new()
-				local input = control:Add()
-				input.Type = InputType.GamePadDirection
+				local input = control:Add("Test")
+				input.Type = InputType.GamepadDirection
 				input.Code = DirectionMethod.Relative
+				input.Device = Enum.UserInputType.Gamepad1
 
 				monitor:Bind(control)
 				monitor:Update()
@@ -1098,11 +1121,11 @@ return function()
 				monitor:Unbind()
 			end)
 
-			it("should error for GamePadDirection with invalid method", function()
+			it("should error for GamepadDirection with invalid method", function()
 				local monitor = VectorMonitor.new()
 				local control = Control.new()
-				local input = control:Add()
-				input.Type = InputType.GamePadDirection
+				local input = control:Add("Test")
+				input.Type = InputType.GamepadDirection
 
 				monitor:Bind(control)
 				expect(function() monitor:Update() end).to.throw()
@@ -1112,8 +1135,9 @@ return function()
 			it("should update for Scheme", function()
 				local monitor = VectorMonitor.new()
 				local control = Control.new()
-				local input = control:Add()
+				local input = control:Add("Test")
 				input.Type = InputType.Scheme
+				input.Code = 0
 
 				monitor:Bind(control)
 				monitor:Update()
@@ -1125,7 +1149,7 @@ return function()
 			it("should error for invalid type", function()
 				local monitor = VectorMonitor.new()
 				local control = Control.new()
-				local input = control:Add()
+				local input = control:Add("Test")
 				input.Type = InputType.None
 
 				monitor:Bind(control)
