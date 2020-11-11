@@ -101,7 +101,7 @@ function Monitor:Update()
 				inputValue = UserInputService:IsMouseButtonPressed(input.Code)
 			elseif input.Type == InputType.MouseMovement then
 				if input.Code == DirectionMethod.None then
-					inputValue = false
+					inputValue = Vector3.new(0, 0, 0)
 				elseif input.Code == DirectionMethod.Absolute then
 					inputValue = UserInputService:GetMouseLocation()
 				elseif input.Code == DirectionMethod.Relative then
@@ -114,7 +114,7 @@ function Monitor:Update()
 				inputValue = UserInputService:IsGamepadButtonDown(input.Device, input.Code)
 			elseif input.Type == InputType.GamepadDirection then
 				if input.Code == DirectionMethod.None then
-					inputValue = false
+					inputValue = Vector3.new(0, 0, 0)
 				elseif input.Code == DirectionMethod.Absolute then
 					local deviceInput = getDeviceInput(input.Code, input.Device)
 					if deviceInput == nil then
