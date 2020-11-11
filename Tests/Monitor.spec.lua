@@ -935,7 +935,6 @@ return function()
 				local control = Control.new()
 				local input = control:Add("Test")
 				input.Type = InputType.GamepadDirection
-				input.Code = DirectionMethod.None
 
 				monitor:Bind(control)
 				expect(function() monitor:Update() end).to.throw()
