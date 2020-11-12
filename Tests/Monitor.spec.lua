@@ -1148,8 +1148,7 @@ return function()
 			it("should error for invalid type", function()
 				local monitor = VectorMonitor.new()
 				local control = Control.new()
-				local input = control:Add("Test")
-				input.Type = InputType.None
+				control:Add("Test")
 
 				monitor:Bind(control)
 				expect(function() monitor:Update() end).to.throw()
