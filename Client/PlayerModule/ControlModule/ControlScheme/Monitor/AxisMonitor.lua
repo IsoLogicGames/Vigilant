@@ -67,7 +67,7 @@ function AxisMonitor:transformValue(input, value)
 		else
 			return value.Y + offset, 1
 		end
-	elseif type == InputType.Scheme then
+	elseif inputType == InputType.Scheme then
 		local valueType = type(value)
 		if valueType == "boolean" then
 			value = value and 1 or 0
