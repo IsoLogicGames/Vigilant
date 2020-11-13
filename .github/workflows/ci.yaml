@@ -65,7 +65,7 @@ jobs:
       uses: actions/checkout@v2
       with:
         repository: LastTalon/roblox-win-installer
-        ref: "d7b7237e3b1c23cc3e1bd1bfb1b7f770511b65c3"
+        ref: "fix-login"
         path: roblox-win-installer
         submodules: true
 
