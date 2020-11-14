@@ -65,7 +65,7 @@ jobs:
       uses: actions/checkout@v2
       with:
         repository: LastTalon/roblox-win-installer
-        ref: "fix-login"
+        ref: "fix-timeout"
         path: roblox-win-installer
         submodules: true
 
