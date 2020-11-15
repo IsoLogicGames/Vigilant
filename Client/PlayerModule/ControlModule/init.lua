@@ -127,7 +127,7 @@ end
 --- Deactivates the default camera action.
 function ControlModule:UnsetCamera()
 	if self.cameraListener ~= nil then
-		self.OnCommand:Disonnect(self.cameraListener)
+		self.OnCommand:Disconnect(self.cameraListener)
 		self.cameraListener = nil
 	end
 end
