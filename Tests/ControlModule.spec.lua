@@ -90,12 +90,13 @@ return function()
 			end
 
 			local control = controlScheme:Add("Test")
-			control.Monitor = monitor
+			control:SetMonitor(monitor)
 
 			ControlModule:Bind(controlScheme)
 			expect(updated).to.equal(false)
 			ControlModule:Update()
 			expect(updated).to.equal(true)
+			ControlModule:Unbind()
 		end)
 
 		it("should provide a default Move", function()
