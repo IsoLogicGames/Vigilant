@@ -88,6 +88,24 @@ function Control:Inputs()
 	return pairs(self.InputSet)
 end
 
+--- Sets this Control's Monitor and binds it.
+--
+-- @param monitor the Monitor
+function Control:SetMonitor(monitor)
+	if self.monitor ~= nil then
+		self.monitor:Unbind()
+	end
+	self.monitor = monitor
+	monitor:Bind(self)
+end
+
+--- Gets this Control's Monitor.
+--
+-- @return the Monitor
+function Control:GetMonitor()
+	return self.monitor
+end
+
 -- End --
 Console.log("Done.")
 
