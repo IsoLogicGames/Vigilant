@@ -96,7 +96,9 @@ function Control:SetMonitor(monitor)
 		self.monitor:Unbind()
 	end
 	self.monitor = monitor
-	monitor:Bind(self)
+	if monitor ~= nil then
+		monitor:Bind(self)
+	end
 end
 
 --- Gets this Control's Monitor.
