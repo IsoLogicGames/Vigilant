@@ -117,9 +117,9 @@ return function()
 
 		it("should provide a default Direction", function()
 			expect(function()
-				ControlModule:UnsetCamera()
-				ControlModule:SetCamera("Test")
-				ControlModule:UnsetCamera()
+				ControlModule:UnsetDirection()
+				ControlModule:SetDirection("Test")
+				ControlModule:UnsetDirection()
 			end).never.to.throw()
 		end)
 
